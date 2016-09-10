@@ -1,0 +1,8 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+.no-gutter > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+

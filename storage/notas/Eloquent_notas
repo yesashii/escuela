@@ -1,0 +1,39 @@
+
+muchos a muchos
+$roles_de_usuario = $usuario->roles;// trae ls roles asignados al usuario (eloquent magic!!)
+lo que devuelve es una coleccion.
+
+-------------------------
+
+User::find(1)->roles->find(2)->name;
+
+la primera parte trae el usuario con ese id, luego podemos seleccionar un rol en particular. es una coleccion hasta
+que le agregamos el atributo que queremos, en este caso el nombre.
+
+
+-- --------------------------
+
+   CARGOS;<br/>
+        @foreach($positions as $position)
+            @if( isset( $usuario->positions->find($position->id)->id ) )
+                <input checked type="checkbox" name="position" value="{{ $position->id }}">{{ $position->name }}
+            @else
+                <input type="checkbox" name="position" value="{{ $position->id }}">{{ $position->name }}
+            @endif
+
+
+
+        @endforeach
+        <hr/>
+
+        Departamentos;<br/>
+        @foreach($departments as $department)
+            @if( isset( $usuario->departments->find($department->id)->id ) )
+                <input checked type="checkbox" name="department" value="{{ $department->id }}">{{ $department->name }}
+            @else
+                <input type="checkbox" name="department" value="{{ $department->id }}">{{ $department->name }}
+            @endif
+
+        @endforeach
+        <hr/>
+
