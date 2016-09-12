@@ -17,6 +17,9 @@ class CreatePositionsTable extends Migration
 
             $table->increments('id');
             $table->string('name');
+            $table->boolean('active')->defaut(1);
+
+
             $table->integer('level_id')->unsigned();
 
             $table->string('user_control');
