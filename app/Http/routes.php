@@ -78,7 +78,10 @@ Route::group(['middleware' => 'auth'], function(){
     /* list */
     Route::get('/listarCargo',    'Mantenedores\MantenedorDeCargos@listarTodos')->name('listarCargo');
     Route::post('/listarCargo',   'Mantenedores\MantenedorDeCargos@buscarCargo');
-    
+
+    /* update */
+    Route::get('actualizarCargo/{id}',    'Mantenedores\MantenedorDeCargos@actualizar')->name('actualizarCargo');
+    Route::post('actualizarCargo/{id}',   'Mantenedores\MantenedorDeCargos@accionActualizar')->name('actualizarCargo');
     
     /**********************************/    
 

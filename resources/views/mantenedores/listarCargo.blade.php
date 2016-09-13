@@ -30,41 +30,49 @@
             </div>
         </form>
 
-        <table class="table ">
-            <thead>
-            <tr class="row">
-                <th class="col-xs-6">Nombre</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            @if($numCargos == 0)
-                <tr>
-                    <td>{{'No existen usuarios con el criterio de búsqueda'}}</td>
-                </tr>
-            @endif
+        <div class="row" >
 
-            @if($numCargos > 0)
-                @foreach($cargos as $cargo)
+            <div class="col-xs-12" >
+                <table class="table ">
+                    <thead>
                     <tr class="row">
-                        <td class="col-xs-8">{{ $cargo->name     }}</td>
-
-                        <td class=" col-xs-1">
-                            <a class="iconos" href=""   data-toggle="tooltip" title="Editar" >  <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/></a> |
-                            <a class="iconos" href=""   data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
-                            <a class="iconos" href=""   data-toggle="tooltip" title="Eliminar"> <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/></a>
-
-                        </td>
-
+                        <th class="col-xs-10">Nombre</th>
+                        <th class="col-xs-2">Acción</th>
                     </tr>
-                @endforeach
-            @endif
+                    </thead>
+
+                    <tbody>
+
+                    @if($numCargos == 0)
+                        <tr>
+                            <td>{{'No existen usuarios con el criterio de búsqueda'}}</td>
+                        </tr>
+                    @endif
+
+                    @if($numCargos > 0)
+                        @foreach($cargos as $cargo)
+                            <tr class="row">
+                                <td class="col-xs-10">{{ $cargo->name }}</td>
+
+                                <td class=" col-xs-2">
+                                    <a class="iconos" href="{{ url('actualizarCargo/'.$cargo->id) }}"   data-toggle="tooltip" title="Editar" >  <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/></a> |
+                                    <a class="iconos" href=""   data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
+                                    <a class="iconos" href=""   data-toggle="tooltip" title="Eliminar"> <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/></a>
+
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
 
 
+                </table>
 
+            </div>
 
-            </tbody>
-        </table>
+        </div>
 
         {!! $cargos->render() !!}
 

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Mantenedores;
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,4 +31,49 @@ class MantenedorDeCargos extends Controller
         $numCargos = count ( $cargos );
         return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
     }
+
+
+    public function actualizar($id)
+    {
+
+
+        $cargo = Position::find($id);
+
+        return view('mantenedores/actualizarCargo',
+            [
+                'cargo' => $cargo,
+            ]);
+    }
+
+    public function accionActualizar(Request $request, $id)
+    {
+        //dd($_POST);
+        $mensaje_de_vacio = ", estaba vacío.";
+
+        $validator = Validator::make($request->all(), [
+            'name'    => 'required',
+        ],$messages = [
+            'name.required'       => 'El campo Nombre '.$mensaje_de_vacio,
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect('actualizarCargo/'.$id.'')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $name           = $_POST['name'];
+
+        $cargo          = Position::find($id);
+        $cargo->name    = $name;
+
+        $cargo->save();
+
+       // dd($cargo->name);
+
+        $request->session()->flash('alert-success', 'El Cargo ha sido correctamente actualizado.');
+        return Redirect::to('actualizarCargo/'.$id);
+    }
+
 }
