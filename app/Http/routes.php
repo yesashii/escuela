@@ -82,6 +82,10 @@ Route::group(['middleware' => 'auth'], function(){
     /* update */
     Route::get('actualizarCargo/{id}',    'Mantenedores\MantenedorDeCargos@actualizar')->name('actualizarCargo');
     Route::post('actualizarCargo/{id}',   'Mantenedores\MantenedorDeCargos@accionActualizar')->name('actualizarCargo');
+
+    /* create */
+    Route::get('/ingresarCargo',  'Mantenedores\MantenedorDeCargos@ingresar')->name('ingresarCargo');
+   // Route::post('/ingresarUsuario',   'Mantenedores\MantenedorDeUsuarios@accionIngresarUsuario');
     
     /**********************************/    
 

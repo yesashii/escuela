@@ -24,7 +24,7 @@
             <div class="container">
                 <p class="row" >
                     <button type="submit" class="btn btn-primary">Buscar</button>
-                    <button type="button" class="btn btn-primary">Nuevo</button>
+                    <button type="button" onclick='window.location ="{{ url("ingresarCargo") }}"' class="btn btn-primary">Nuevo</button>
                     <button type="button" class="btn btn-primary">Salir</button>
                 </p>
             </div>
