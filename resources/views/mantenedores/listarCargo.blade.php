@@ -37,7 +37,8 @@
                 <table class="table ">
                     <thead>
                     <tr class="row">
-                        <th class="col-xs-10">Nombre</th>
+                        <th class="col-xs-9">Nombre</th>
+                        <th class="col-xs-1">Nivel</th>
                         <th class="col-xs-2">Acción</th>
                     </tr>
                     </thead>
@@ -53,7 +54,8 @@
                     @if($numCargos > 0)
                         @foreach($cargos as $cargo)
                             <tr class="row">
-                                <td class="col-xs-10">{{ $cargo->name }}</td>
+                                <td class="col-xs-9">{{ $cargo->name }}</td>
+                                <td class="col-xs-1 centered">{{ $cargo->levels->name }}</td>
 
                                 <td class=" col-xs-2">
                                     <a class="iconos" href="{{ url('actualizarCargo/'.$cargo->id) }}"   data-toggle="tooltip" title="Editar" >  <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/></a> |

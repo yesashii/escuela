@@ -9,13 +9,13 @@ class Position extends Model
     //
     protected $table = 'positions';
 
-    // | levels | -< | positions |
+    // | levels | -< | positions | (funciona) |hasMany| -< |belongsTo|
     public function levels()
     {
-        return $this->hasMany(Level::class, 'level_id');
+        return $this->belongsTo(Level::class, 'level_id', 'id');
     }
 
-    // | Users | >-< | positions |
+    // | Users | >-< | positions | ()
     public function users()
     {
         return $this->belongsToMany(User::class, 'position_users', 'position_id', 'user_id' );

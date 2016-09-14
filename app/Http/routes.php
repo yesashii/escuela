@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     /* create */
     Route::get('/ingresarCargo',  'Mantenedores\MantenedorDeCargos@ingresar')->name('ingresarCargo');
-   // Route::post('/ingresarUsuario',   'Mantenedores\MantenedorDeUsuarios@accionIngresarUsuario');
+    Route::post('/ingresarCargo', 'Mantenedores\MantenedorDeCargos@accionIngresar')->name('ingresarCargo');
     
     /**********************************/    
 

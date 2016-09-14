@@ -175,7 +175,7 @@ $factory->define(\App\Models\Position::class, function (Faker\Generator $faker){
     return [
         'name'          => $faker->jobTitle,
         'level_id'      => rand(1, $max_level_id),
-        'active'        => 1,
+        //'active'        => 1,
 
         'user_control'  => 'seeder',
     ];

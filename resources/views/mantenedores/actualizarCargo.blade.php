@@ -49,6 +49,21 @@
                                 <label for="name">Cargo</label>
                                 <input type="text" class="form-control" name="name" id="name" value="{{ $cargo->name }}">
                             </div>
+
+                            <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                                <label for="level_id">Nivel</label>
+                                <select class="form-control" name="level_id" id="level_id"  >
+                                    <option selected disabled>Seleccione un nivel</option>
+                                    @foreach( $niveles as $nivel )
+                                        @if( $nivel->id == $cargo->levels->id)
+                                            <option selected value="{{ $cargo->levels->id }}">{{ $cargo->levels->name }}</option>
+                                        @else
+                                            <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -48,8 +48,20 @@
 
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
                                 <label for="name">Cargo</label>
-                                <input type="text" class="form-control" name="name" id="name" value="">
+                                <input type="text" class="form-control" name="name" id="name" value="" placeholder="Ingrese el cargo">
                             </div>
+
+                            <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                                <label for="level_id">Nivel</label>
+                                <select class="form-control" name="level_id" id="level_id"  >
+                                    <option selected disabled>Seleccione un nivel</option>
+                                    @foreach( $niveles as $nivel )
+                                        <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
