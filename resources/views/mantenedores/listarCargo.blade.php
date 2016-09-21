@@ -25,7 +25,7 @@
                 <p class="row" >
                     <button type="submit" class="btn btn-primary">Buscar</button>
                     <button type="button" onclick='window.location ="{{ url("ingresarCargo") }}"' class="btn btn-primary">Nuevo</button>
-                    <button type="button" class="btn btn-primary">Salir</button>
+                    <button type="button" onclick='window.location ="{{ url("mantenedores") }}"'  class="btn btn-primary">Salir</button>
                 </p>
             </div>
         </form>
@@ -59,7 +59,7 @@
 
                                 <td class=" col-xs-2">
                                     <a class="iconos" href="{{ url('actualizarCargo/'.$cargo->id) }}"   data-toggle="tooltip" title="Editar" >  <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/></a> |
-                                    <a class="iconos" href=""   data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
+                                    <a class="iconos" href="{{ url('verCargo/'.$cargo->id) }}"          data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
                                     <a class="iconos" href=""   data-toggle="tooltip" title="Eliminar"> <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/></a>
 
                                 </td>

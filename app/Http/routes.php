@@ -31,6 +31,31 @@ Route::get('activo', function () {
     return view('mantenedores_dev/activo');
 });
 
+/*******************************/
+/**         PROTOTIPOS       **/
+/*****************************/
+
+// asignación de activos >>
+Route::get('/asignarActivoIndex', function () {
+    return view('prototypes/asignarActivo/index');
+});
+
+Route::get('/asignarActivo', function () {
+    return view('prototypes/asignarActivo/asignarActivo');
+});
+// asignación de activos <<
+
+// ingresar compra >>
+
+Route::get('/ingresarCompraIndex', function () {
+    return view('prototypes/ingresarCompra/index');
+});
+
+// ingresar compra <<
+
+/*******************************/
+
+
 Route::group(['middleware' => 'auth'], function(){
 
 

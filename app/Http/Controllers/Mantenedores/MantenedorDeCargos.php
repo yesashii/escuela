@@ -105,12 +105,12 @@ class MantenedorDeCargos extends Controller
                 'level_id' => 'required',
             ], $messages = [
                 'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-                'level_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
+                'level_id.required' => 'Seleccione un nivel ',
             ]);
 
             if ($validator->fails()) {
 
-                return redirect('actualizarCargo/' . $id . '')
+                return redirect('ingresarCargo')
                     ->withErrors($validator)
                     ->withInput();
             }
