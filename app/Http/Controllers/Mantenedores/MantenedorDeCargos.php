@@ -93,24 +93,21 @@ class MantenedorDeCargos extends Controller
     public function accionIngresar(Request $request)
     {
         //dd($_POST);
-        $name       = $_POST['name'];
-        $level_id   = $_POST['level_id'];
+        $name               = $_POST['name'];
+        $level_id           = $_POST['level_id'];
+        $mensaje_de_vacio   = ", estaba vacío.";
 
-        if(isset($level_id))
-        {
-            $mensaje_de_vacio = ", estaba vacío.";
-
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'level_id' => 'required',
-            ], $messages = [
-                'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'level_id' => 'required',
+        ], $messages = [
+        'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
                 'level_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
             ]);
 
             if ($validator->fails()) {
 
-                return redirect('actualizarCargo/' . $id . '')
+                return redirect('actualizarCargo')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -125,10 +122,7 @@ class MantenedorDeCargos extends Controller
 
             $request->session()->flash('alert-success', 'El cargo ha sido correctamente ingresado.');
             return Redirect::to('ingresarCargo');
-        }else{
-            $request->session()->flash('alert-warning ', 'Debe seleccionar un nivel.');
-            return Redirect::to('ingresarCargo');
-        }
+
 
 
     }
