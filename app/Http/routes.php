@@ -31,6 +31,31 @@ Route::get('activo', function () {
     return view('mantenedores_dev/activo');
 });
 
+/*******************************/
+/**         PROTOTIPOS       **/
+/*****************************/
+
+// asignación de activos >>
+Route::get('/asignarActivoIndex', function () {
+    return view('prototypes/asignarActivo/index');
+});
+
+Route::get('/asignarActivo', function () {
+    return view('prototypes/asignarActivo/asignarActivo');
+});
+// asignación de activos <<
+
+// ingresar compra >>
+
+Route::get('/ingresarCompraIndex', function () {
+    return view('prototypes/ingresarCompra/index');
+});
+
+// ingresar compra <<
+
+/*******************************/
+
+
 Route::group(['middleware' => 'auth'], function(){
 
 
@@ -86,6 +111,12 @@ Route::group(['middleware' => 'auth'], function(){
     /* create */
     Route::get('/ingresarCargo',  'Mantenedores\MantenedorDeCargos@ingresar')->name('ingresarCargo');
     Route::post('/ingresarCargo', 'Mantenedores\MantenedorDeCargos@accionIngresar')->name('ingresarCargo');
+
+    /* ver */
+    Route::get('/verCargo/{id}', 'Mantenedores\MantenedorDeCargos@ver')->name('verCargo');
+
+    /* delete */
+    Route::get('eliminarCargo/{id}', 'Mantenedores\MantenedorDeCargos@eliminar')->name('eliminarCargo');
     
     /**********************************/    
 

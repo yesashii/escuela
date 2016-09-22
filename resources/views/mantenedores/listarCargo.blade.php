@@ -13,6 +13,9 @@
 
     <div class="container">
         <h1>Mantenedor de Cargos</h1>
+
+        @include('layouts.mensajes')
+
         <form action={{ url("listarCargo") }} method="post">
             {{ csrf_field() }}
             <div class="row">
@@ -25,7 +28,7 @@
                 <p class="row" >
                     <button type="submit" class="btn btn-primary">Buscar</button>
                     <button type="button" onclick='window.location ="{{ url("ingresarCargo") }}"' class="btn btn-primary">Nuevo</button>
-                    <button type="button" class="btn btn-primary">Salir</button>
+                    <button type="button" onclick='window.location ="{{ url("mantenedores") }}"'  class="btn btn-primary">Salir</button>
                 </p>
             </div>
         </form>
@@ -59,8 +62,23 @@
 
                                 <td class=" col-xs-2">
                                     <a class="iconos" href="{{ url('actualizarCargo/'.$cargo->id) }}"   data-toggle="tooltip" title="Editar" >  <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/></a> |
-                                    <a class="iconos" href=""   data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
-                                    <a class="iconos" href=""   data-toggle="tooltip" title="Eliminar"> <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/></a>
+                                    <a class="iconos" href="{{ url('verCargo/'.$cargo->id) }}"          data-toggle="tooltip" title="Ver más" > <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/></a> |
+
+                                    <!-- inicio eliminar -->
+                                    @if ( count( $cargo->users ) > 0 )
+                                        <a class="iconos"
+                                           href="javascript:alert('El cargo posee usuarios asociados, no se puede eliminar')"
+                                           data-toggle="tooltip" title="Eliminar">
+                                            <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
+                                        </a>
+                                    @else
+                                        <a class="iconos"
+                                           href="javascript:confirmarEliminar('{{ url('eliminarCargo/'.$cargo->id) }}','{{ 'el cargo: '.$cargo->name }}')"
+                                           data-toggle="tooltip" title="Eliminar">
+                                            <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
+                                        </a>
+                                    @endif
+                                    <!-- fin eliminar -->
 
                                 </td>
 

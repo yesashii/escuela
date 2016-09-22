@@ -54,7 +54,7 @@
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
                                 <label for="level_id">Nivel</label>
                                 <select class="form-control" name="level_id" id="level_id"  >
-                                    <option selected disabled>Seleccione un nivel</option>
+                                    <option value="" >Seleccione un nivel</option>
                                     @foreach( $niveles as $nivel )
                                         <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
                                     @endforeach

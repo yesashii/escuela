@@ -17,19 +17,20 @@ use App\Models\Position;
 class MantenedorDeCargos extends Controller
 {
     private $datosPorPagina = 5;
+
     public function listarTodos()
     {
-        $cargos     = Position::paginate( $this->datosPorPagina );
-        $numCargos  = count ( $cargos );
+        $cargos = Position::paginate($this->datosPorPagina);
+        $numCargos = count($cargos);
         return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
     }
 
     public function buscarCargo()
     {
-        $nombre     = $_POST['nombre'];
-        $cargos     = Position::where('name', 'LIKE', '%'.$nombre.'%')->paginate( $this->datosPorPagina );
+        $nombre = $_POST['nombre'];
+        $cargos = Position::where('name', 'LIKE', '%' . $nombre . '%')->paginate($this->datosPorPagina);
 
-        $numCargos = count ( $cargos );
+        $numCargos = count($cargos);
         return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
     }
 
@@ -38,13 +39,13 @@ class MantenedorDeCargos extends Controller
     {
 
 
-        $cargo      = Position::find($id);
-        $niveles    = Level::all();
+        $cargo = Position::find($id);
+        $niveles = Level::all();
 
         return view('mantenedores/actualizarCargo',
             [
-                'cargo'     => $cargo,
-                'niveles'   => $niveles,
+                'cargo' => $cargo,
+                'niveles' => $niveles,
             ]);
     }
 
@@ -54,39 +55,39 @@ class MantenedorDeCargos extends Controller
         $mensaje_de_vacio = ", estaba vacío.";
 
         $validator = Validator::make($request->all(), [
-            'name'      => 'required',
-            'level_id'  => 'required',
-        ],$messages = [
-            'name.required'       => 'El campo Nombre '.$mensaje_de_vacio,
-            'level_id.required'   => 'El campo Nivel '.$mensaje_de_vacio,
+            'name' => 'required',
+            'level_id' => 'required',
+        ], $messages = [
+            'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
+            'level_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
         ]);
 
         if ($validator->fails()) {
 
-            return redirect('actualizarCargo/'.$id.'')
+            return redirect('actualizarCargo/' . $id . '')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $name               = $_POST['name'];
-        $level_id           = $_POST['level_id'];
+        $name = $_POST['name'];
+        $level_id = $_POST['level_id'];
 
-        $cargo              = Position::find($id);
-        $cargo->name        = $name;
-        $cargo->level_id    = $level_id;
+        $cargo = Position::find($id);
+        $cargo->name = $name;
+        $cargo->level_id = $level_id;
 
         $cargo->save();
 
-       // dd($cargo->name);
+        // dd($cargo->name);
 
         $request->session()->flash('alert-success', 'El Cargo ha sido correctamente actualizado.');
-        return Redirect::to('actualizarCargo/'.$id);
+        return Redirect::to('actualizarCargo/' . $id);
     }
-    
-    
+
+
     public function ingresar()
     {
-        $niveles    = Level::all();
+        $niveles = Level::all();
         return view('mantenedores/ingresarCargo', ['niveles' => $niveles]);
     }
 
@@ -95,19 +96,21 @@ class MantenedorDeCargos extends Controller
         //dd($_POST);
         $name               = $_POST['name'];
         $level_id           = $_POST['level_id'];
-        $mensaje_de_vacio   = ", estaba vacío.";
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'level_id' => 'required',
-        ], $messages = [
-        'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-                'level_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
+        if (isset($level_id)) {
+            $mensaje_de_vacio = ", estaba vacío.";
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'level_id' => 'required',
+            ], $messages = [
+                'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
+                'level_id.required' => 'Seleccione un nivel ',
             ]);
 
             if ($validator->fails()) {
 
-                return redirect('actualizarCargo')
+                return redirect('ingresarCargo')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -124,7 +127,33 @@ class MantenedorDeCargos extends Controller
             return Redirect::to('ingresarCargo');
 
 
+        }
 
     }
 
+    public function ver($id)
+    {
+        $cargo                      = Position::find($id);
+        $usuarios                   = $cargo->users;//User::all();
+        $numUsuarios = count ( $usuarios );
+
+       // dd($usuarios);
+        return view('mantenedores/verCargo',
+            [
+                'cargo'         => $cargo,
+                'numUsuarios'   => $numUsuarios,
+                'usuarios'      => $usuarios,
+            ]);
+
+    }
+
+    public function eliminar($id, Request $request)
+    {
+        $cargo      = Position::find($id);
+        $mensaje    = 'El cargo: '.$cargo->name.', ha sido correctamente eliminado.';
+
+        $cargo->delete();
+        $request->session()->flash('alert-success', $mensaje);
+        return Redirect::to('listarCargo');
+    }
 }

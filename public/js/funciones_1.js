@@ -28,6 +28,18 @@ function problemas()
     return false;
 }
 
+function confirmarEliminar(url, dato)
+{
+    var path = window.location;
+    var r = confirm("Se eliminará "+dato);
+    if (r == true) {
+
+        location.href=url;
+    } else {
+        return;//location.href=path;
+    }
+}
+
 
 
 
