@@ -46,6 +46,10 @@
         </div>
     </div>
 </nav>
+
+<li><a href="{{ url('lang', ['en']) }}">En</a></li>
+<li><a href="{{ url('lang', ['es']) }}">Es</a></li>
+
 <div class="container">
     @if (Session::has('errors'))
         <div class="alert alert-warning" role="alert">
