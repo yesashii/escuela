@@ -28,10 +28,10 @@ function problemas()
     return false;
 }
 
-function confirmarEliminar(url, dato)
+function confirmarEliminar(url, dato, msj)
 {
     var path = window.location;
-    var r = confirm("Se eliminará "+dato);
+    var r = confirm(msj+" "+dato);
     if (r == true) {
 
         location.href=url;

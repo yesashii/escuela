@@ -20,12 +20,24 @@ class UserTableSeeder extends Seeder
 
         // usuario para iniciar sesión 01
         User::create([
-            'identifier'        => '15370707-3',
-            'first_name'        => 'Luis Emmanuel',
-            'last_name'         =>  'Herrera Gárnica',
+            'identifier'        => '1-9',
+            'first_name'        => 'Usuario',
+            'last_name'         =>  'Prueba',
             'city_id'           =>  1,
             'user_control'      => 'seeder',
-            'email'             => 'lherrera@gignosoft.cl',
+            'email'             => 'user@prueba.dev',
+            'password'          => bcrypt('secret'),
+            'remember_token'    => str_random(10),
+            'active'            => 1,
+        ]);
+        // usuario para iniciar sesión 02
+        User::create([
+            'identifier'        => '17351592-8',
+            'first_name'        => 'Ninoska Isbania',
+            'last_name'         =>  'Garcés Jara',
+            'city_id'           =>  2,
+            'user_control'      => 'seeder',
+            'email'             => 'ngarces@delpa.cl',
             'password'          => bcrypt('secret'),
             'remember_token'    => str_random(10),
             'active'            => 1,

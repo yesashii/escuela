@@ -40,10 +40,10 @@ class MantenedorDeUsuarios extends Controller
 
     public function buscarUsuario()
     {
-        $nombre         = $_POST['nombre'];
-        $apellido       = $_POST['apellido'];
+        $nombre         = $_POST['first_name'];
+        $apellido       = $_POST['last_name'];
         $email          = $_POST['email'];
-        $identificador  = $_POST['identificador'];
+        $identificador  = $_POST['identifier'];
 
         $usuarios = User::where('first_name', 'LIKE', '%'.$nombre.'%')
             ->Where('last_name', 'LIKE', '%'.$apellido.'%')
@@ -93,7 +93,6 @@ class MantenedorDeUsuarios extends Controller
     public function accionIngresarUsuario(Request $request)
     {
         //dd($_POST);
-        $mensaje_de_vacio = ", estaba vacío.";
 
         $validator = Validator::make($request->all(), [
             'identifier'    => 'required',
@@ -105,14 +104,14 @@ class MantenedorDeUsuarios extends Controller
             'positions'     => 'required',
             'departments'   => 'required',
         ],$messages = [
-            'identifier.required'       => 'El campo Rut '.$mensaje_de_vacio,
-            'first_name.required'       => 'El campo Nombre '.$mensaje_de_vacio,
-            'last_name.required'        => 'El campo Apellido '.$mensaje_de_vacio,
-            'email.required'            => 'El campo Email '.$mensaje_de_vacio,
-            'city_id.required'          => 'El campo Ciudad '.$mensaje_de_vacio,
-            'roles.required'            => 'El campo Roles '.$mensaje_de_vacio,
-            'positions.required'        => 'El campo Cargos '.$mensaje_de_vacio,
-            'departments.required'      => 'El campo Departamentos '.$mensaje_de_vacio,
+            'identifier.required'       => trans('mantusuarios.msj_email_requerido'),
+            'first_name.required'       => trans('mantusuarios.msj_first_name_requerido'),
+            'last_name.required'        => trans('mantusuarios.msj_last_name_requerido'),
+            'email.required'            => trans('mantusuarios.msj_email_requerido'),
+            'city_id.required'          => trans('mantusuarios.msj_city_id_requerido'),
+            'roles.required'            => trans('mantusuarios.msj_roles_requerido'),
+            'positions.required'        => trans('mantusuarios.msj_positions_requerido'),
+            'departments.required'      => trans('mantusuarios.msj_departments_requerido'),
         ]);
 
 
@@ -133,7 +132,7 @@ class MantenedorDeUsuarios extends Controller
         $positions      = $_POST['positions'];
         $departments    = $_POST['departments'];
 
-        $password       = bcrypt('admin');
+        $password       = bcrypt('secret');
         $user_control   = $request->user()->identifier;
         $remember_token = str_random(10);
         $active         =  1;
@@ -146,7 +145,7 @@ class MantenedorDeUsuarios extends Controller
             $validator = Validator::make($request->all(), [
                 'identifier'    => 'unique:users',
             ],$messages = [
-                'identifier.unique'   => 'Este Rut, ya existe.',
+                'identifier.unique'   => trans('mantusuarios.msj_identifier_unique'),
             ]);
 
             if ($validator->fails()) {
@@ -160,7 +159,7 @@ class MantenedorDeUsuarios extends Controller
         if (!$this->valida_rut($identifier)) {
 
             return redirect('ingresarUsuario')
-                ->withErrors('El rut ingresado no es válido');
+                ->withErrors( trans('mantusuarios.msj_identifier_invalid') );
         }       
 
         // fin validaciones
@@ -184,7 +183,7 @@ class MantenedorDeUsuarios extends Controller
 
 
 
-        $request->session()->flash('alert-success', 'El usuario ha sido correctamente guardado.');
+        $request->session()->flash('alert-success', trans('mantusuarios.msj_identifier_invalid'));
         return Redirect::to('ingresarUsuario');
     }
     

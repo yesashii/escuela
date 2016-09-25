@@ -1,35 +1,35 @@
 @extends('mantenedores.layouts.principal')
 
-@section('titulo') {{ trans('mantusuarios.titulo') }} @endsection
+@section('titulo') {{ trans('mantusuarios.tit_listarUsuario') }} @endsection
 
 
 @section('contenido')
 
     <div class="container">
-        <h1>{{ trans('mantusuarios.titulo') }}</h1>
+        <h1>{{ trans('mantusuarios.tit_listarUsuario') }}</h1>
         <form action={{ url("listarUsuario") }} method="post">
             {{ csrf_field() }}
 
             <div class="row">
                 <div class="form-group col-sm-6 col-xs-12">
-                    <label for="nombre">{{ trans('mantusuarios.i_l_first_name') }}</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre"
-                           placeholder="{{ trans('mantusuarios.i_p_first_name') }}">
+                    <label for="first_name">{{ trans('mantusuarios.l_first_name') }}</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name"
+                           placeholder="{{ trans('mantusuarios.ph_first_name') }}">
                 </div>
                 <div class="form-group col-sm-6 col-xs-12">
-                    <label for="apellido">{{ trans('mantusuarios.i_l_last_name') }}</label>
-                    <input type="text" class="form-control" name="apellido" id="apellido"
-                           placeholder="{{ trans('mantusuarios.i_p_last_name') }}">
+                    <label for="last_name">{{ trans('mantusuarios.l_last_name') }}</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name"
+                           placeholder="{{ trans('mantusuarios.ph_last_name') }}">
                 </div>
                 <div class="form-group col-sm-6 col-xs-12">
-                    <label for="email">{{ trans('mantusuarios.i_l_email') }}</label>
+                    <label for="email">{{ trans('mantusuarios.l_email') }}</label>
                     <input type="email" class="form-control" name="email" id="email"
-                           placeholder="{{ trans('mantusuarios.i_p_email') }}">
+                           placeholder="{{ trans('mantusuarios.ph_email') }}">
                 </div>
                 <div class="form-group col-sm-6 col-xs-12">
-                    <label for="identificador">{{ trans('mantusuarios.i_l_identifier') }}</label>
-                    <input type="dentificador" class="form-control" name="identificador" id="dentificador"
-                           placeholder="{{ trans('mantusuarios.i_p_identifier') }}">
+                    <label for="identifier">{{ trans('mantusuarios.l_identifier') }}</label>
+                    <input type="text" class="form-control" name="identifier" id="identifier"
+                           placeholder="{{ trans('mantusuarios.ph_identifier') }}">
                 </div>
             </div>
 
@@ -63,20 +63,20 @@
         <table class="table table-striped col-sm-6 col-xs-12">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Rut</th>
-                <th>Ciudad</th>
-                <th>{{ trans('mantusuarios.tbl_col_country') }}</th>
-                <th>Acción</th>
+                <th>{{ trans('mantusuarios.th_first_name')      }}</th>
+                <th>{{ trans('mantusuarios.th_last_name')       }}</th>
+                <th>{{ trans('mantusuarios.th_email')           }}</th>
+                <th>{{ trans('mantusuarios.th_identifier')      }}</th>
+                <th>{{ trans('mantusuarios.th_cities_name')     }}</th>
+                <th>{{ trans('mantusuarios.th_countries_name')  }}</th>
+                <th>{{ trans('mantusuarios.th_accion')          }}</th>
             </tr>
             </thead>
             <tbody>
 
             @if($numUsuarios == 0)
                 <tr>
-                    <td>{{'No existen usuarios con el criterio de búsqueda'}}</td>
+                    <td>{{ trans('mantusuarios.msj_no_encontrado') }}</td>
                 </tr>
             @endif
 
@@ -90,19 +90,27 @@
                         <td>{{ $usuario->cities()->first()->name                                     }}</td>
                         <td>{{ $usuario->cities()->first()->countries()->first()->name               }}</td>
                         <td><a class="iconos" href="{{ url('actualizarUsuario/'.$usuario->id) }}"
-                               data-toggle="tooltip" title="Editar" >
+                               data-toggle="tooltip"
+                               title="{{ trans('mantusuarios.tt_Editar')}}" >
                                 <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
                             </a> |
 
                             <a class="iconos" href="{{ url('verUsuario/'.$usuario->id) }}"
-                               data-toggle="tooltip" title="Ver más" >
+                               data-toggle="tooltip"
+                               title="{{ trans('mantusuarios.tt_ver_mas')}}" >
                                 <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
                             </a> |
-
-                            <a class="iconos" href="{{ url('eliminarUsuario/'.$usuario->id) }}"
-                               data-toggle="tooltip" title="Eliminar">
+                            <a class="iconos"
+                               href="javascript:confirmarEliminar(
+                               '{{ url('eliminarUsuario/'.$usuario->id) }}',
+                               '{{ $usuario->first_name }}',
+                               '{{ trans('mantusuarios.jal_confirm_elmnar_user')}}'
+                               )"
+                               data-toggle="tooltip"
+                               title="{{ trans('mantusuarios.tt_Eliminar')}}">
                                 <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
                             </a>
+
                         </td>
                     </tr>
                 @endforeach
