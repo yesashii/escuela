@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentsTable extends Migration
+class CrateLevelDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         //
-        Schema::create('departments', function (Blueprint $table){
+        Schema::create('levelDepartments', function (Blueprint $table){
+
             $table->increments('id');
-            $table->string('name');
-            $table->integer('office_id')->unsigned();
+            $table->integer('level');
 
             $table->string('user_control');
-            $table->timestamps();
 
-            $table->foreign('office_id')
-                ->references('id')
-                ->on('offices')
-                ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -37,7 +33,7 @@ class CreateDepartmentsTable extends Migration
     {
         //
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('levelDepartments');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

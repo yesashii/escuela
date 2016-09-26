@@ -12,6 +12,13 @@
 */
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Country Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(App\Models\Country::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->country,
@@ -19,6 +26,12 @@ $factory->define(App\Models\Country::class, function (Faker\Generator $faker) {
     ];
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| City Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(App\Models\City::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->city,
@@ -26,6 +39,11 @@ $factory->define(App\Models\City::class, function (Faker\Generator $faker) {
     ];
 });
 
+/*
+|--------------------------------------------------------------------------
+| Role Factory
+|--------------------------------------------------------------------------
+*/
 $factory->defineAs(App\Models\Role::class, 'admin', function (Faker\Generator $faker) {
 
     return [
@@ -42,6 +60,11 @@ $factory->defineAs(App\Models\Role::class, 'visitor', function (Faker\Generator 
     ];
 });
 
+/*
+|--------------------------------------------------------------------------
+| User Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
@@ -65,8 +88,11 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 
-
-// activities
+/*
+|--------------------------------------------------------------------------
+| Activity Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->define(\App\Models\Activity::class, function (Faker\Generator $faker){
 
@@ -77,8 +103,11 @@ $factory->define(\App\Models\Activity::class, function (Faker\Generator $faker){
 
 });
 
-
-//companies
+/*
+|--------------------------------------------------------------------------
+| Company Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(App\Models\Company::class, function (Faker\Generator $faker) {
 
 $max_activity_id = \App\models\Activity::max('id');
@@ -97,7 +126,11 @@ return [
 });
 
 
-// |suppliers| >-< |currencies|
+/*
+|--------------------------------------------------------------------------
+| Supplier Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->define(\App\Models\Supplier::class, function (Faker\Generator $faker){
 
@@ -115,6 +148,11 @@ $factory->define(\App\Models\Supplier::class, function (Faker\Generator $faker){
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| Currency Factory
+|--------------------------------------------------------------------------
+*/
 $factory->defineAs(\App\Models\Currency::class,'clp', function (Faker\Generator $faker){
 
     return [
@@ -124,7 +162,11 @@ $factory->defineAs(\App\Models\Currency::class,'clp', function (Faker\Generator 
 
 });
 
-// |suppliers| >-< |pay_metods|
+/*
+|--------------------------------------------------------------------------
+| PayMetod Factory
+|--------------------------------------------------------------------------
+*/
 $factory->defineAs(\App\Models\PayMetod::class,'Contado', function (Faker\Generator $faker){
 
     return [
@@ -142,7 +184,11 @@ $factory->defineAs(\App\Models\PayMetod::class,'30', function (Faker\Generator $
 
 });
 
-// | levels | -< | positions |
+/*
+|--------------------------------------------------------------------------
+| Level Factory
+|--------------------------------------------------------------------------
+*/
 $factory->defineAs(\App\Models\Level::class,'1', function (Faker\Generator $faker){
 
     return [
@@ -168,6 +214,11 @@ $factory->defineAs(\App\Models\Level::class,'3', function (Faker\Generator $fake
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| Position Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(\App\Models\Position::class, function (Faker\Generator $faker){
 
     $max_level_id = \App\models\Level::max('id');
@@ -184,7 +235,11 @@ $factory->define(\App\Models\Position::class, function (Faker\Generator $faker){
 
 
 
-// StateAssetTable
+/*
+|--------------------------------------------------------------------------
+| StateAsset Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->defineAs(\App\Models\StateAsset::class,'nuevo', function (Faker\Generator $faker){
 
@@ -204,7 +259,11 @@ $factory->defineAs(\App\Models\StateAsset::class,'usado', function (Faker\Genera
 
 });
 
-// AssetTableSeeder
+/*
+|--------------------------------------------------------------------------
+| Asset Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(\App\Models\Asset::class, function (Faker\Generator $faker){
 
     $max_supplier_id        = \App\models\Supplier::max('id');
@@ -227,7 +286,11 @@ $factory->define(\App\Models\Asset::class, function (Faker\Generator $faker){
 
 
 
-//StateAssignment
+/*
+|--------------------------------------------------------------------------
+| StateAssignment Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->defineAs(\App\Models\StateAssignment::class,'prestamo', function (Faker\Generator $faker){
     return [
@@ -257,10 +320,11 @@ $factory->defineAs(\App\Models\StateAssignment::class,'perdido', function (Faker
     ];
 });
 
-
-
-
-// |state_assignments| >-< |assignments|
+/*
+|--------------------------------------------------------------------------
+| Assignment Factory
+|--------------------------------------------------------------------------
+*/
 
 $factory->define(\App\Models\Assignment::class, function (Faker\Generator $faker){ // no deben ser mas assignaciones que assets
 
@@ -308,7 +372,11 @@ $factory->define(\App\Models\Assignment::class, function (Faker\Generator $faker
 
 });
 
-//offices
+/*
+|--------------------------------------------------------------------------
+| Office Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(\App\Models\Office::class, function (Faker\Generator $faker){
     $max_cities_id     = \App\models\City::max('id');
 
@@ -321,18 +389,13 @@ $factory->define(\App\Models\Office::class, function (Faker\Generator $faker){
 });
 
 
-// departments
-$factory->define(\App\Models\Department::class, function (Faker\Generator $faker){
-    $max_offices_id     = \App\models\Office::max('id');
 
-    return [
-        'name'              => $faker->firstNameFemale,
-        'office_id'         => rand(1, $max_offices_id),
-        'user_control'      => 'seeder',
-    ];
-});
 
-// purchases
+/*
+|--------------------------------------------------------------------------
+| Purchase Factory
+|--------------------------------------------------------------------------
+*/
 $factory->define(\App\Models\Purchase::class, function (Faker\Generator $faker){
 
     $unit_price = rand(1111,9999);
@@ -349,8 +412,21 @@ $factory->define(\App\Models\Purchase::class, function (Faker\Generator $faker){
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Department Factory
+|--------------------------------------------------------------------------
+*//*
+$factory->define(\App\Models\Department::class, function (Faker\Generator $faker){
+    $max_offices_id     = \App\models\Office::max('id');
 
-
+    return [
+        'name'              => $faker->firstNameFemale,
+        'office_id'         => rand(1, $max_offices_id),
+        'user_control'      => 'seeder',
+    ];
+});
+*/
 
 
 

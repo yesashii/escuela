@@ -63,9 +63,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(OfficesTableSeeder::class);
 
-        $this->call(DepartmentTableSeeder::class);
 
-        $this->call(Department_usersTableSeeder::class);
+        $this->call(LevelDepartmentsSeeder::class);
+
 
         Model::reguard();
     }
