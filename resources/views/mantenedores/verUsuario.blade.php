@@ -1,8 +1,6 @@
 @extends('mantenedores.layouts.principal')
 
-@section('titulo')
-    {{ 'Ver usuario' }}
-@endsection
+@section('titulo') {{ trans( 'mantusuarios.tit_verUsuario' ) }} @endsection
 
 @section('contenido')
 
@@ -11,82 +9,81 @@
      <div class="col-xs-3"></div>
     <div class="panel panel-info col-xs-6 ">
         <div class="panel-heading">
-            <h3 class="panel-title">Información del usuario</h3>
+            <h3 class="panel-title">{{ trans( 'mantusuarios.tit_verUsuario' ) }}</h3>
         </div>
         <div class="panel-body">
             <p class="row">
-                <div class="col-xs-2">Nombre</div>
-                <div class="col-xs-10">: {{ $usuario->first_name }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_first_name' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->first_name }}</div>
             </p>
 
             <p class="row">
-                <div class="col-xs-2">Apellido</div>
-                <div class="col-xs-10">: {{ $usuario->last_name }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_last_name' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->last_name }}</div>
             </p>
 
             <p class="row">
-                <div class="col-xs-2">Email</div>
-                <div class="col-xs-10">: {{ $usuario->email }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_email' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->email }}</div>
             </p>
 
             <p class="row">
-                <div class="col-xs-2">Rut</div>
-                <div class="col-xs-10">: {{ $usuario->identifier }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_identifier' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->identifier }}</div>
             </p>
 
             <p class="row">
-                <div class="col-xs-2">País</div>
-                <div class="col-xs-10">: {{ $usuario->cities()->first()->countries()->first()->name }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_country' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->cities()->first()->countries()->first()->name }}</div>
             </p>
 
             <p class="row">
-                <div class="col-xs-2">Ciudad</div>
-                <div class="col-xs-10">: {{ $usuario->cities()->first()->name }}</div>
+                <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_city' ) }}</div>
+                <div class="col-xs-9">: {{ $usuario->cities()->first()->name }}</div>
             </p>
 
             <p class="row">
-            <div class="col-xs-2">Roles</div>
-            <div class="col-xs-10">:
-                <?php $contador = 0; ?>
+            <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_roles' ) }}</div>
+            <div class="col-xs-9">:<br/>
+                <ul>
                 @foreach( $usuario->roles as $role )
-                    @if($contador > 0){{ ', ' }}@endif
-                     {{ $role->name }}
-                 <?php $contador ++; ?>
+                        <li>{{ $role->name }}</li>
                 @endforeach
+                </ul>
             </div>
 
             </p>
 
             <p class="row">
-            <div class="col-xs-2">Cargos</div>
-            <div class="col-xs-10">:
-                <?php $contador = 0; ?>
+            <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_positions' ) }}</div>
+            <div class="col-xs-9">:<br/>
+                <ul>
                 @foreach( $usuario->positions as $position )
-                    @if($contador > 0){{ ', ' }}@endif
-                    {{ $position->name }}
-                    <?php $contador ++; ?>
+                   <li> {{ $position->name }} </li>
                 @endforeach
+                </ul>
             </div>
             </p>
 
             </p>
 
             <p class="row">
-            <div class="col-xs-2">Departamentos</div>
-            <div class="col-xs-10">:
-                <?php $contador = 0; ?>
+            <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_departments' ) }}</div>
+            <div class="col-xs-9">:<br/>
+                <ul>
                 @foreach( $usuario->departments as $department )
-                    @if($contador > 0){{ ', ' }}@endif
-                    {{ $department->name }}
-                    <?php $contador ++; ?>
+                    <li>{{ $department->name }}</li>
                 @endforeach
+                </ul>
             </div>
             </p>
 
             <p class="row">
             <div class="col-xs-10"></div>
             <div class="col-xs-2">
-                <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarUsuario") }}"' value="Volver">
+                <input type="button" class="btn btn-primary "
+                       onclick='window.location ="{{ route("listarUsuario") }}"'
+                       value="{{ trans( 'mantusuarios.btn_volver' ) }}">
             </div>
             </p>
 

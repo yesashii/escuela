@@ -37,8 +37,10 @@
 |
 */
 
-// {{ trans( 'mantusuarios.xxxxxxxxx' ) }}
+// {{ trans( 'mantCargos.xxxxxxxxx' ) }}
 
+
+/*
 return[
 	'tit_listarUsuario'				=> 'Mantenedor de usuarios',
 	'tit_ingresarUsuario'			=> 'Ingresar nuevo usuario',
@@ -118,3 +120,4 @@ return[
 	
 
 ];
+*/

@@ -3,12 +3,6 @@
 @section('titulo') Mantenedor de cargos @endsection
 
 
-
-
-
-
-
-
 @section('contenido')
 
     <div class="container">

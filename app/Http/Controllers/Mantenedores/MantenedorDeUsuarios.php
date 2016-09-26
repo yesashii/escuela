@@ -243,14 +243,14 @@ class MantenedorDeUsuarios extends Controller
             'positions'     => 'required',
             'departments'   => 'required',
         ],$messages = [
-            'identifier.required'       => 'El campo Rut '.$mensaje_de_vacio,
-            'first_name.required'       => 'El campo Nombre '.$mensaje_de_vacio,
-            'last_name.required'        => 'El campo Apellido '.$mensaje_de_vacio,
-            'email.required'            => 'El campo Email '.$mensaje_de_vacio,
-            'city_id.required'          => 'El campo Ciudad '.$mensaje_de_vacio,
-            'roles.required'            => 'El campo Roles '.$mensaje_de_vacio,
-            'positions.required'        => 'El campo Cargos '.$mensaje_de_vacio,
-            'departments.required'      => 'El campo Departamentos '.$mensaje_de_vacio,
+            'identifier.required'       => trans(   'mantusuarios.msj_identifier_requerido' ),
+            'first_name.required'       => trans(   'mantusuarios.msj_first_name_requerido' ),
+            'last_name.required'        => trans(   'mantusuarios.msj_last_name_requerido'  ),
+            'email.required'            => trans(   'mantusuarios.msj_email_requerido'      ),
+            'city_id.required'          => trans(   'mantusuarios.msj_city_id_requerido'    ),
+            'roles.required'            => trans(   'mantusuarios.msj_roles_requerido'      ),
+            'positions.required'        => trans(   'mantusuarios.msj_positions_requerido'  ),
+            'departments.required'      => trans(   'mantusuarios.msj_departments_requerido'),
         ]);
 
 
@@ -280,7 +280,7 @@ class MantenedorDeUsuarios extends Controller
             $validator = Validator::make($request->all(), [
                 'identifier'    => 'unique:users',
             ],$messages = [
-                'identifier.unique'   => 'Este Rut, ya existe.',
+                'identifier.unique'   => trans('mantusuarios.msj_identifier_unique'),
             ]);
         }
         if ($validator->fails()) {
@@ -318,7 +318,7 @@ class MantenedorDeUsuarios extends Controller
 
 
         $user->save();
-        $request->session()->flash('alert-success', 'El usuario ha sido correctamente actualizado.');
+        $request->session()->flash('alert-success', trans('mantusuarios.msj_usuario_actualizado_ok'));
         return Redirect::to('actualizarUsuario/'.$id);
     }
 
@@ -347,7 +347,7 @@ class MantenedorDeUsuarios extends Controller
         $usuario = User::find($id);
         $usuario->password = bcrypt('secret');
         $usuario->save();
-        $request->session()->flash('alert-success', 'La contraseña ha sido restablecida correctamente.');
+        $request->session()->flash( 'alert-success', trans( 'mantusuarios.msj_reset_pass_ok' ) );
         return Redirect::to('actualizarUsuario/'.$id);
     }
 
