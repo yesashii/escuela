@@ -17,17 +17,23 @@ class CreatePositionsTable extends Migration
 
             $table->increments('id');
             $table->string('name');
-            //$table->boolean('active')->defaut(1);
 
 
-            $table->integer('level_id')->unsigned();
+            $table->integer('department_id')->unsigned();
+            $table->integer('levelpositions_id')->unsigned();
 
             $table->string('user_control');
             $table->timestamps();
 
-            $table->foreign('level_id')
+
+            $table->foreign('department_id')
                 ->references('id')
-                ->on('levels')
+                ->on('departments')
+                ->onDelete('cascade');
+
+            $table->foreign('levelpositions_id')
+                ->references('id')
+                ->on('levelPositions')
                 ->onDelete('cascade');
 
         });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Mantenedores;
 
-use App\Models\Level;
+use App\Models\LevelPositions;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -40,7 +40,7 @@ class MantenedorDeCargos extends Controller
 
 
         $cargo = Position::find($id);
-        $niveles = Level::all();
+        $niveles = LevelPositions::all();
 
         return view('mantenedores/actualizarCargo',
             [
@@ -56,10 +56,10 @@ class MantenedorDeCargos extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'level_id' => 'required',
+            'LevelPositions_id' => 'required',
         ], $messages = [
             'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-            'level_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
+            'LevelPositions_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
         ]);
 
         if ($validator->fails()) {
@@ -70,11 +70,11 @@ class MantenedorDeCargos extends Controller
         }
 
         $name = $_POST['name'];
-        $level_id = $_POST['level_id'];
+        $LevelPositions_id = $_POST['LevelPositions_id'];
 
         $cargo = Position::find($id);
         $cargo->name = $name;
-        $cargo->level_id = $level_id;
+        $cargo->LevelPositions_id = $LevelPositions_id;
 
         $cargo->save();
 
@@ -87,7 +87,7 @@ class MantenedorDeCargos extends Controller
 
     public function ingresar()
     {
-        $niveles = Level::all();
+        $niveles = LevelPositions::all();
         return view('mantenedores/ingresarCargo', ['niveles' => $niveles]);
     }
 
@@ -95,17 +95,17 @@ class MantenedorDeCargos extends Controller
     {
         //dd($_POST);
         $name               = $_POST['name'];
-        $level_id           = $_POST['level_id'];
+        $LevelPositions_id           = $_POST['LevelPositions_id'];
 
-        if (isset($level_id)) {
+        if (isset($LevelPositions_id)) {
             $mensaje_de_vacio = ", estaba vacío.";
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'level_id' => 'required',
+                'LevelPositions_id' => 'required',
             ], $messages = [
                 'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-                'level_id.required' => 'Seleccione un nivel ',
+                'LevelPositions_id.required' => 'Seleccione un nivel ',
             ]);
 
             if ($validator->fails()) {
@@ -119,7 +119,7 @@ class MantenedorDeCargos extends Controller
 
             $cargo = new Position();
             $cargo->name = $name;
-            $cargo->level_id = $level_id;
+            $cargo->LevelPositions_id = $LevelPositions_id;
 
             $cargo->save();
 

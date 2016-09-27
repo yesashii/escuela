@@ -184,35 +184,7 @@ $factory->defineAs(\App\Models\PayMetod::class,'30', function (Faker\Generator $
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| Level Factory
-|--------------------------------------------------------------------------
-*/
-$factory->defineAs(\App\Models\Level::class,'1', function (Faker\Generator $faker){
 
-    return [
-        'name'          => '1',
-        'user_control'  => 'seeder',
-    ];
-
-});
-$factory->defineAs(\App\Models\Level::class,'2', function (Faker\Generator $faker){
-
-    return [
-        'name'          => '2',
-        'user_control'  => 'seeder',
-    ];
-
-});
-$factory->defineAs(\App\Models\Level::class,'3', function (Faker\Generator $faker){
-
-    return [
-        'name'          => '3',
-        'user_control'  => 'seeder',
-    ];
-
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -221,11 +193,13 @@ $factory->defineAs(\App\Models\Level::class,'3', function (Faker\Generator $fake
 */
 $factory->define(\App\Models\Position::class, function (Faker\Generator $faker){
 
-    $max_level_id = \App\models\Level::max('id');
+    $max_level_id       = \App\models\LevelPositions::max('id');
+    $max_department_id  = \App\models\Departments::max('id');
 
     return [
         'name'          => $faker->jobTitle,
-        'level_id'      => rand(1, $max_level_id),
+        'levelPositions_id'      => rand(1, $max_level_id),
+        'department_id'          => rand(1, $max_department_id),
         //'active'        => 1,
 
         'user_control'  => 'seeder',

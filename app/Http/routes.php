@@ -99,6 +99,24 @@ Route::group(['middleware' => ['web']], function () {
 
         /**********************************/
 
+        /*
+        |--------------------------------------------------------------------------
+        | MANTENEDOR DE NIVELES DE DEPARTAMENTOS
+        |--------------------------------------------------------------------------
+        *///INICIO
+
+        /* list */
+        Route::get('/listarNivelDepartamento',    'Mantenedores\MantenedorDeNivelesDepartamentos@listarTodos')
+            ->name('listarNivelDepartamento');
+        
+        //Route::post('/listarCargo',   'Mantenedores\MantenedorDeCargos@buscarCargo');
+
+
+        /*//FIN
+        |--------------------------------------------------------------------------
+        |--------------------------------------------------------------------------
+        */
+
 
 
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLevelsTable extends Migration
+class CreateLevelPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLevelsTable extends Migration
     public function up()
     {
         //
-        Schema::create('levels', function (Blueprint $table){
+        Schema::create('levelPositions', function (Blueprint $table){
 
             $table->increments('id');
-            $table->string('name');
+            $table->integer('level');
 
             $table->string('user_control');
             $table->timestamps();
@@ -33,7 +33,7 @@ class CreateLevelsTable extends Migration
     {
         //
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('levelPositions');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

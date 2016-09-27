@@ -40,8 +40,13 @@ class DatabaseSeeder extends Seeder
         $this->call(PaySuppliersTableSeeder::class);
 
 
+
+        $this->call(LevelDepartmentsSeeder::class);
+        $this->call(DepartmentsSeeder::class);
+
+
         // | levels | -< | positions |
-        $this->call(LevelTableSeeder::class);
+        $this->call(LevelPositionsTableSeeder::class);
         $this->call(PositionTableSeeder::class);
 
         // | Users | >-< | positions |
@@ -64,7 +69,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OfficesTableSeeder::class);
 
 
-        $this->call(LevelDepartmentsSeeder::class);
+
 
 
         Model::reguard();
