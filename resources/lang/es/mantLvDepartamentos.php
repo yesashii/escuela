@@ -7,10 +7,10 @@
 |   identifier  : Este campo guarda el rut completo (11111111-1).
 |   first_name  : Este campo guarda el nombre o los nombres.
 |   last_name   : Este campo guarda el apellido o los apellidos.
-|   email       : Este campo guarda el correo electónico.
-|   password    : Este campo guarda la contraseña.
+|   email       : Este campo guarda el correo electï¿½nico.
+|   password    : Este campo guarda la contraseï¿½a.
 |   city_id     : Este campo guarda el id de la tabla cities.
-|   active      : Este campo indica si el usuario esta activo: 1 o si está inactivo: 0.
+|   active      : Este campo indica si el usuario esta activo: 1 o si estï¿½ inactivo: 0.
 |   city_id     : Este campo guarda el id de la tabla cities.
 |
 |
@@ -24,7 +24,7 @@
 |   l   	: Para todos los tipos de labels.
 |   isd 	: Para los valores por defecto de un select. (ej: ingrese ciudades)
 |   cl  	: para un label o texto de un check.
-|   tit 	: para un título de la vista (tit_nombreDeLaVista)
+|   tit 	: para un tï¿½tulo de la vista (tit_nombreDeLaVista)
 |   ph 		: para un placeholder de un input text.
 |   btn		: para un boton.
 |   th		: para un titulo de una columna de una tabla.
@@ -44,7 +44,7 @@ return[
 	
 	'l_level'						=> 'Nivel',
 	
-	'isd_level'						=> 'Seleccione un nivel',
+	'isd_level'						=> 'Todos los niveles',
 	
 	'btn_buscar'					=> 'Buscar',
 	'btn_nuevo'						=> 'Nuevo',

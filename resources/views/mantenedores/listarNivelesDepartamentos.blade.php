@@ -6,13 +6,13 @@
 
 	<div class="container">
 		<h1>{{ trans('mantLvDepartamentos.tit_listarNivelDepartamentos') }}</h1>
-		<form action="" method="post">
+		<form action=" {{ url('listarNivelDepartamento') }} " method="post">
 			{{ csrf_field() }}
 
 			<div class="row col-xs-4">
 					 <label for="level">{{ trans('mantLvDepartamentos.l_level') }}</label>
 					<select class="form-control" name="level" id="level">
-						<option  value="">{{ trans('mantLvDepartamentos.isd_level') }}</option>
+						<option  value="0">{{ trans('mantLvDepartamentos.isd_level') }}</option>
 						@foreach( $cantidades as $cantidad )
 								<option value="{{ $cantidad->id }}">{{ $cantidad->level }}</option>
 						@endforeach

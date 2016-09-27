@@ -109,7 +109,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/listarNivelDepartamento',    'Mantenedores\MantenedorDeNivelesDepartamentos@listarTodos')
             ->name('listarNivelDepartamento');
         
-        //Route::post('/listarCargo',   'Mantenedores\MantenedorDeCargos@buscarCargo');
+        Route::post('/listarNivelDepartamento',   'Mantenedores\MantenedorDeNivelesDepartamentos@buscar');
 
 
         /*//FIN
