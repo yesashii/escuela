@@ -38,28 +38,36 @@
 */
 
 
-// {{ trans('mantLvDepartamentos.xxxxxxxxxx') }}
+// {{ trans('mantLvDepartamentos.xxxxxxxxxx') }} 
 return[
-	'tit_listarNivelDepartamentos'	=> 'Mantenedor de niveles de departamentos',
+	'tit_listarNivelDepartamentos'		=> 'Mantenedor de niveles de departamentos',
+	'tit_actualizarNivelDepartamento'	=> 'Actualizar nivel de departamento',
 	
 	'l_level'						=> 'Nivel',
 	
 	'isd_level'						=> 'Todos los niveles',
+	'isd_level2'					=> 'Seleccione un nivel',
 	
 	'btn_buscar'					=> 'Buscar',
 	'btn_nuevo'						=> 'Nuevo',
 	'btn_salir'						=> 'Salir',
+	'btn_guardar'					=> 'Guardar',
+	'btn_volver'					=> 'Volver',
 	
 	'th_level'						=> 'Nivel',	
 	'th_accion'						=> 'Acción',
 
 	'msj_no_encontrado'				=> 'No se encontraron resultados.',
+	'msj_ingresado_1'				=> 'El nivel: ',
+	'msj_ingresado_2'				=> ', ha sido ingresado correctamente. ',
 
 	'tt_Editar'						=> 'Editar',	
 	'tt_ver_mas'					=> 'Ver más',
 	'tt_Eliminar'					=> 'Eliminar',	
 	
 	'jal_confirm_elmnar_level'		=> 'Se eliminará el nivel: ',
+	
+	'tp_nivel_departamento'			=> 'Nivel del departamento'
 	
 	
 	

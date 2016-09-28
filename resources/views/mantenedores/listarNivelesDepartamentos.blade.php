@@ -5,7 +5,10 @@
 @section('contenido')
 
 	<div class="container">
-		<h1>{{ trans('mantLvDepartamentos.tit_listarNivelDepartamentos') }}</h1>
+
+        <h1>{{ trans('mantLvDepartamentos.tit_listarNivelDepartamentos') }}</h1>
+        @include('layouts.mensajes')
+
 		<form action=" {{ url('listarNivelDepartamento') }} " method="post">
 			{{ csrf_field() }}
 
@@ -26,6 +29,7 @@
                 </div>
                 <div class="btn-group ">
                     <button type="button" class="btn btn-primary "
+                            onclick='window.location ="{{ url("ingresarNivelDepartamento") }}"'
                             class="btn btn-primary">{{ trans('mantLvDepartamentos.btn_nuevo') }}
                     </button>
                 </div>
@@ -63,27 +67,27 @@
                 @foreach($nivelesDepartamentos as $nivelesDepartamento)
                     <tr class="row">
                         <td class="col-xs-10">{{ $nivelesDepartamento->level }}</td>
-                        <td class="col-xs-2"><a class="iconos" href=""
-                               data-toggle="tooltip"
-                               title="{{ trans('mantLvDepartamentos.tt_Editar')}}" >
-                                <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
-                            </a> |
+                        <td class="col-xs-2">
 
-                            <a class="iconos" href=""
+                            <a class="iconos"
+                               href=""
                                data-toggle="tooltip"
                                title="{{ trans('mantLvDepartamentos.tt_ver_mas')}}" >
                                 <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
-                            </a> |
-                            <a class="iconos"
-                               href="javascript:confirmarEliminar(
-                               '{{ url('eliminarNivelDepartamento/'.$nivelesDepartamento->id) }}',
-                               '{{ $nivelesDepartamento->level }}',
-                               '{{ trans('mantLvDepartamentos.jal_confirm_elmnar_level')}}'
-                               )"
-                               data-toggle="tooltip"
-                               title="{{ trans('mantLvDepartamentos.tt_Eliminar')}}">
-                                <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
                             </a>
+
+                            @if( $nivelesDepartamento->level==$max )
+                                | <a class="iconos"
+                                    href="javascript:confirmarEliminar(
+                                    '{{ url('eliminarNivelDepartamento/'.$nivelesDepartamento->id) }}',
+                                    '{{ $nivelesDepartamento->level }}',
+                                    '{{ trans('mantLvDepartamentos.jal_confirm_elmnar_level')}}')"
+
+                                     data-toggle="tooltip"
+                                    title="{{ trans('mantLvDepartamentos.tt_Eliminar')}}">
+                                    <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
+                                </a>
+                            @endif
 
                         </td>
                     </tr>
