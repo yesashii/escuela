@@ -39,16 +39,20 @@ class MantenedorDeNivelesDepartamentos extends Controller
     public function buscar()
     {
         //dd($_POST);
-        $nivel = $_POST['level'];
+        $nivel_id = $_POST['level'];
 
-        if( $nivel == 0)
+        $niveles = LevelDepartments::find($nivel_id);
+
+        $nivel = $niveles->level;
+
+        if( $nivel_id == 0)
         {
             $nivelesDepartamentos       = LevelDepartments::paginate( $this->datosPorPagina );
         }else{
             $nivelesDepartamentos       = LevelDepartments::where('level', '=', $nivel)->paginate( $this->datosPorPagina );
         }
 
-
+        dd($nivelesDepartamentos);
         $numnivelesDepartamentos    = count ( $nivelesDepartamentos );
 
         $cantidades = LevelDepartments::all();
@@ -85,17 +89,30 @@ class MantenedorDeNivelesDepartamentos extends Controller
     }
 
 
+    public function eliminar(Request $request, $id)
+    {
+        $nivel      = LevelDepartments::find($id);
 
-    public function actualizar( $id )
-    {        
-        $nivelesDepartamentos   = LevelDepartments::all();
-        
-        return view('mantenedores/actualizarNivelDepartamento',
-            [
-                'id'                            => $id,
-                'nivelesDepartamentos'         => $nivelesDepartamentos,
-            ]);
+        $mensaje    = trans( 'mantLvDepartamentos.msj_eliminado_1').$nivel->level.trans( 'mantLvDepartamentos.msj_eliminado_2');
+
+        $nivel->delete();
+
+        $request->session()->flash('alert-success', $mensaje);
+        return Redirect::to('listarNivelDepartamento');
     }
 
+    public function ver($id)
+    {
+        $nivel          = LevelDepartments::find($id);
+
+        $departamentos  = $nivel->departments;
+
+
+
+        return view('mantenedores/verNivelDepartamento', [
+            'nivel'         => $nivel,
+            'departamentos' => $departamentos,
+        ]);
+    }
 
 }

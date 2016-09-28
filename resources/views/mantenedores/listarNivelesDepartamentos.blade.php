@@ -35,6 +35,7 @@
                 </div>
                 <div class="btn-group ">
                     <button type="button" class="btn btn-primary "
+                            onclick='window.location ="{{ url("mantenedores") }}"'
                             class="btn btn-primary">{{ trans('mantLvDepartamentos.btn_salir') }}
                     </button>
                 </div>
@@ -70,23 +71,34 @@
                         <td class="col-xs-2">
 
                             <a class="iconos"
-                               href=""
+                               href="{{ url('verNivelDepartamento/'.$nivelesDepartamento->id) }}"
                                data-toggle="tooltip"
                                title="{{ trans('mantLvDepartamentos.tt_ver_mas')}}" >
                                 <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
                             </a>
 
                             @if( $nivelesDepartamento->level==$max )
-                                | <a class="iconos"
-                                    href="javascript:confirmarEliminar(
+
+                                @if( count($nivelesDepartamento->departments) )
+                                    | <a class="iconos"
+                                         href="javascript:alert('{{ trans('mantLvDepartamentos.jal_error_elmnar_level') }}')"
+                                         data-toggle="tooltip"
+                                         title="{{ trans('mantLvDepartamentos.tt_Eliminar')}}">
+                                        <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
+                                    </a>
+                                @else
+                                    | <a class="iconos"
+                                         href="javascript:confirmarEliminar(
                                     '{{ url('eliminarNivelDepartamento/'.$nivelesDepartamento->id) }}',
                                     '{{ $nivelesDepartamento->level }}',
                                     '{{ trans('mantLvDepartamentos.jal_confirm_elmnar_level')}}')"
 
-                                     data-toggle="tooltip"
-                                    title="{{ trans('mantLvDepartamentos.tt_Eliminar')}}">
-                                    <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
-                                </a>
+                                         data-toggle="tooltip"
+                                         title="{{ trans('mantLvDepartamentos.tt_Eliminar')}}">
+                                        <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
+                                    </a>
+                                @endif
+
                             @endif
 
                         </td>

@@ -24,7 +24,7 @@
 |   l   	: Para todos los tipos de labels.
 |   isd 	: Para los valores por defecto de un select. (ej: ingrese ciudades)
 |   cl  	: para un label o texto de un check.
-|   tit 	: para un t�tulo de la vista (tit_nombreDeLaVista)
+|   tit 	: para un título de la vista (tit_nombreDeLaVista)
 |   ph 		: para un placeholder de un input text.
 |   btn		: para un boton.
 |   th		: para un titulo de una columna de una tabla.
@@ -33,6 +33,7 @@
 |   tp		: para un titulo de un panel.
 |   jal		: para un alerta de javascript.
 |   lvm		: para el lavel de ver mas .
+|   li		: para los <li> .
 |
 |
 */
@@ -42,8 +43,10 @@
 return[
 	'tit_listarNivelDepartamentos'		=> 'Mantenedor de niveles de departamentos',
 	'tit_actualizarNivelDepartamento'	=> 'Actualizar nivel de departamento',
+    'tit_verNivelDepartamento'	        => 'Detalle del nivel de departamento',
 	
 	'l_level'						=> 'Nivel',
+    'l_departamentos'				=> 'Departamentos',
 	
 	'isd_level'						=> 'Todos los niveles',
 	'isd_level2'					=> 'Seleccione un nivel',
@@ -61,13 +64,19 @@ return[
 	'msj_ingresado_1'				=> 'El nivel: ',
 	'msj_ingresado_2'				=> ', ha sido ingresado correctamente. ',
 
+    'msj_eliminado_1'				=> 'El nivel: ',
+    'msj_eliminado_2'				=> ', ha sido eliminado correctamente. ',
+
 	'tt_Editar'						=> 'Editar',	
 	'tt_ver_mas'					=> 'Ver más',
 	'tt_Eliminar'					=> 'Eliminar',	
 	
 	'jal_confirm_elmnar_level'		=> 'Se eliminará el nivel: ',
+    'jal_error_elmnar_level'		=> 'El nivel posee departamentos asociados, no se puede eliminar.',
 	
-	'tp_nivel_departamento'			=> 'Nivel del departamento'
+	'tp_detalle_nivel'			    => 'Detalle del nivel del departamento.',
+
+    'li_sin_departamento'			=> 'Sin departamentos asociados.'
 	
 	
 	
