@@ -129,6 +129,31 @@ Route::group(['middleware' => ['web']], function () {
         |--------------------------------------------------------------------------
         */
 
+        /*
+        |--------------------------------------------------------------------------
+        | MANTENEDOR DE NIVELES DE CARGOS
+        |--------------------------------------------------------------------------
+        *///INICIO
+
+        /* list */
+        Route::get('/listarNivelCargo',    'Mantenedores\MantenedorDeNivelesCargos@listarTodos')
+            ->name('listarNivelCargo');
+
+        Route::post('/listarNivelCargo',   'Mantenedores\MantenedorDeNivelesCargos@buscar');
+
+        /* create */
+        Route::get('/ingresarNivelCargo',  'Mantenedores\MantenedorDeNivelesCargos@ingresar')
+            ->name('ingresarNivelCargo');
+
+        /* delete */
+        Route::get('eliminarNivelCargo/{id}', 'Mantenedores\MantenedorDeNivelesCargos@eliminar')
+            ->name('eliminarNivelCargo');
+
+        /*//FIN
+        |--------------------------------------------------------------------------
+        |--------------------------------------------------------------------------
+        */
+
 
 
 

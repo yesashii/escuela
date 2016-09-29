@@ -39,20 +39,16 @@ class MantenedorDeNivelesDepartamentos extends Controller
     public function buscar()
     {
         //dd($_POST);
-        $nivel_id = $_POST['level'];
-
-        $niveles = LevelDepartments::find($nivel_id);
-
-        $nivel = $niveles->level;
+        $nivel_id      = $_POST['level'];
 
         if( $nivel_id == 0)
         {
             $nivelesDepartamentos       = LevelDepartments::paginate( $this->datosPorPagina );
         }else{
-            $nivelesDepartamentos       = LevelDepartments::where('level', '=', $nivel)->paginate( $this->datosPorPagina );
+            $nivelesDepartamentos       = LevelDepartments::where('id', '=', $nivel_id)->paginate( $this->datosPorPagina );
         }
 
-        dd($nivelesDepartamentos);
+       // dd($nivelesDepartamentos);
         $numnivelesDepartamentos    = count ( $nivelesDepartamentos );
 
         $cantidades = LevelDepartments::all();
