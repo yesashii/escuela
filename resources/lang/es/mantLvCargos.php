@@ -41,12 +41,11 @@
 
 // {{ trans('mantLvCargos.xxxxxxxxxx') }}
 return[
-    'tit_listarNivelCargo'		        => 'Mantenedor de niveles de cargos',
-    'tit_actualizarNivelDepartamento'	=> 'Actualizar nivel del cargo ',
-    'tit_verNivelDepartamento'	        => 'Detalle del nivel de departamento',
+    'tit_listarNivelCargo'		    => 'Mantenedor de niveles de cargos',
+    'tit_verNivelCargo'	        	=> 'Detalle del nivel del cargo',
 
     'l_level'						=> 'Nivel',
-    'l_departamentos'				=> 'Departamentos',
+    'l_cargos'						=> 'Cargos',
 
     'isd_level'						=> 'Todos los niveles',
     'isd_level2'					=> 'Seleccione un nivel',
@@ -72,11 +71,11 @@ return[
     'tt_Eliminar'					=> 'Eliminar',
 
     'jal_confirm_elmnar_level'		=> 'Se eliminará el nivel: ',
-    'jal_error_elmnar_level'		=> 'El nivel posee departamentos asociados, no se puede eliminar.',
+    'jal_error_elmnar_level'		=> 'El nivel posee cargos asociados, no se puede eliminar.',
 
-    'tp_detalle_nivel'			    => 'Detalle del nivel del departamento.',
+    'tp_detalle_nivel'			    => 'Detalle del nivel del cargo.',
 
-    'li_sin_departamento'			=> 'Sin departamentos asociados.'
+    'li_sin_cargos'					=> 'Sin cargos asociados.'
 
 
 

@@ -51,14 +51,31 @@
                             </div>
 
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
-                                <label for="level_id">Nivel</label>
-                                <select class="form-control" name="level_id" id="level_id"  >
+                                <label for="LevelPositions_id">Nivel</label>
+                                <select class="form-control" name="LevelPositions_id" id="LevelPositions_id"  >
                                     <option selected disabled>Seleccione un nivel</option>
+
                                     @foreach( $niveles as $nivel )
-                                        @if( $nivel->id == $cargo->levels->id)
-                                            <option selected value="{{ $cargo->levels->id }}">{{ $cargo->levels->name }}</option>
+                                        @if( $nivel->id == $cargo->levelPositions->id)
+                                            <option selected value="{{ $cargo->levelPositions->id }}">{{ $nivel->level }}</option>
                                         @else
-                                            <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
+                                            <option value="{{ $nivel->id }}">{{ $nivel->level }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                                <label for="department_id">Departamento</label>
+                                <select class="form-control" name="department_id" id="department_id"  >
+                                    <option selected disabled>Seleccione un departamento</option>
+
+                                    @foreach( $departments as $department )
+                                        @if( $department->id == $cargo->departments->id)
+                                            <option selected value="{{ $department->id  }}">{{ $department->name }}</option>
+                                        @else
+                                            <option value="{{ $department->id  }}">{{ $department->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>

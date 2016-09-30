@@ -10,6 +10,10 @@
 
     <ul>
         <li><a href="{{ route('listarNivelDepartamento') }}">Mantenedor de niveles de departamentos</a></li>
+        <li><a href="{{ route('listarCargo') }}">Mantenedor de cargos</a></li>
+        <li><a href="{{ route('listarNivelCargo') }}">Mantenedor de niveles de cargos</a></li>
+
+
 
     </ul>
 

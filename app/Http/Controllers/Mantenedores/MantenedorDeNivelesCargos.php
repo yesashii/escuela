@@ -93,13 +93,15 @@ class MantenedorDeNivelesCargos extends Controller
     public function ver($id)
     {
         $nivel          = LevelPositions::find($id);
-        $departamentos  = $nivel->departments;
+        $cargos         = $nivel->positions;
+
+        //dd($cargos);
 
 
 
         return view('mantenedores/verNivelCargo', [
             'nivel'         => $nivel,
-            'departamentos' => $departamentos,
+            'cargos' => $cargos,
         ]);
     }
 

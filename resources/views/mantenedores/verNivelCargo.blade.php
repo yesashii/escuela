@@ -1,6 +1,6 @@
 @extends('mantenedores.layouts.principal')
 
-@section('titulo') {{ trans('mantLvCargos.tit_verNivelDepartamento') }}  @endsection
+@section('titulo') {{ trans('mantLvCargos.tit_verNivelCargo') }}  @endsection
 
 @section('contenido')
 
@@ -27,15 +27,15 @@
                     </p>
 
                     <p class="row">
-                    <div class="col-xs-3">{{ trans('mantLvCargos.l_departamentos') }}</div>
+                    <div class="col-xs-3">{{ trans('mantLvCargos.l_cargos') }}</div>
                     <div class="col-xs-9">
                         <ul>
-                            @if( sizeof($departamentos) > 0)
-                                @foreach( $departamentos as $departamento )
-                                    <li>{{ $departamento->name }}</li>
+                            @if( sizeof($cargos) > 0)
+                                @foreach( $cargos as $cargo )
+                                    <li>{{ $cargo->name }}</li>
                                 @endforeach
                             @else
-                                <li>{{ trans('mantLvCargos.li_sin_departamento') }} </li>
+                                <li>{{ trans('mantLvCargos.li_sin_cargos') }} </li>
                             @endif
 
 
@@ -50,7 +50,7 @@
                     <p class="row">
                     <div class="col-xs-10"></div>
                     <div class="col-xs-2">
-                        <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarNivelDepartamento") }}"' value="Volver">
+                        <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarNivelCargo") }}"' value="Volver">
                     </div>
                     </p>
 

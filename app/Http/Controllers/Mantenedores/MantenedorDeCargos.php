@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mantenedores;
 
+use App\Models\Departments;
 use App\Models\LevelPositions;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +21,8 @@ class MantenedorDeCargos extends Controller
 
     public function listarTodos()
     {
-        $cargos = Position::paginate($this->datosPorPagina);
-        $numCargos = count($cargos);
+        $cargos     = Position::paginate($this->datosPorPagina);
+        $numCargos  = count($cargos);
         return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
     }
 
@@ -29,6 +30,8 @@ class MantenedorDeCargos extends Controller
     {
         $nombre = $_POST['nombre'];
         $cargos = Position::where('name', 'LIKE', '%' . $nombre . '%')->paginate($this->datosPorPagina);
+        
+        
 
         $numCargos = count($cargos);
         return view('mantenedores/listarCargo', array('cargos' => $cargos, 'numCargos' => $numCargos));
@@ -39,13 +42,15 @@ class MantenedorDeCargos extends Controller
     {
 
 
-        $cargo = Position::find($id);
-        $niveles = LevelPositions::all();
+        $cargo          = Position::find($id);
+        $niveles        = LevelPositions::all();
+        $departments    = Departments::all();
 
         return view('mantenedores/actualizarCargo',
             [
-                'cargo' => $cargo,
-                'niveles' => $niveles,
+                'cargo'         => $cargo,
+                'niveles'       => $niveles,
+                'departments'   => $departments,
             ]);
     }
 
@@ -57,9 +62,11 @@ class MantenedorDeCargos extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'LevelPositions_id' => 'required',
+            'department_id' => 'required',
         ], $messages = [
             'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
             'LevelPositions_id.required' => 'El campo Nivel ' . $mensaje_de_vacio,
+            'department_id.required' => 'El campo departamento ' . $mensaje_de_vacio, //reparar mensajes
         ]);
 
         if ($validator->fails()) {
@@ -69,11 +76,13 @@ class MantenedorDeCargos extends Controller
                 ->withInput();
         }
 
-        $name = $_POST['name'];
-        $LevelPositions_id = $_POST['LevelPositions_id'];
+        $name               = $_POST['name'];
+        $LevelPositions_id  = $_POST['LevelPositions_id'];
+        $department_id      = $_POST['department_id'];
 
         $cargo = Position::find($id);
         $cargo->name = $name;
+        $cargo->department_id = $department_id;
         $cargo->LevelPositions_id = $LevelPositions_id;
 
         $cargo->save();

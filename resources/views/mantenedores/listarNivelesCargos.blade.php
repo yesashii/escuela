@@ -77,7 +77,7 @@
                         <td class="col-xs-2">
 
                             <a class="iconos"
-                               href="{{ url('verNivelDepartamento/'.$nivelesCargo->id) }}"
+                               href="{{ url('verNivelCargo/'.$nivelesCargo->id) }}"
                                data-toggle="tooltip"
                                title="{{ trans('mantLvCargos.tt_ver_mas')}}" >
                                 <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>
@@ -85,7 +85,7 @@
 
                             @if( $nivelesCargo->level==$max )
 
-                                @if( count($nivelesCargo->departments) )
+                                @if( count($nivelesCargo->positions) )
                                     | <a class="iconos"
                                          href="javascript:alert('{{ trans('mantLvCargos.jal_error_elmnar_level') }}')"
                                          data-toggle="tooltip"

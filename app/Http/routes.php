@@ -149,6 +149,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('eliminarNivelCargo/{id}', 'Mantenedores\MantenedorDeNivelesCargos@eliminar')
             ->name('eliminarNivelCargo');
 
+        /* ver */
+        Route::get('/verNivelCargo/{id}',     'Mantenedores\MantenedorDeNivelesCargos@ver')
+            ->name('verNivelCargo');
+
         /*//FIN
         |--------------------------------------------------------------------------
         |--------------------------------------------------------------------------

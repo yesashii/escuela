@@ -9,10 +9,17 @@ class Position extends Model
     //
     protected $table = 'positions';
 
-    // | levels | -< | positions | (funciona) |hasMany| -< |belongsTo|
-    public function levels()
+    // | levelPositions | -< | positions | (funciona) |hasMany| -< |belongsTo|
+    public function levelPositions()
     {
-        return $this->belongsTo(Level::class, 'level_id', 'id');
+        return $this->belongsTo(levelPositions::class, 'levelpositions_id', 'id');
+    }
+
+
+    // | departments | -< | positions | (funciona) |hasMany| -< |belongsTo|
+    public function departments()
+    {
+        return $this->belongsTo(Departments::class, 'department_id', 'id');
     }
 
     // | Users | >-< | positions | ()
