@@ -96,25 +96,34 @@ class MantenedorDeCargos extends Controller
 
     public function ingresar()
     {
-        $niveles = LevelPositions::all();
-        return view('mantenedores/ingresarCargo', ['niveles' => $niveles]);
+        $niveles        = LevelPositions::all();
+
+        $departamentos  = Departments::all();
+        return view('mantenedores/ingresarCargo', [
+            'niveles'       => $niveles,
+            'departamentos' => $departamentos,
+
+        ]);
     }
 
     public function accionIngresar(Request $request)
     {
         //dd($_POST);
         $name               = $_POST['name'];
-        $LevelPositions_id           = $_POST['LevelPositions_id'];
+        $LevelPositions_id  = $_POST['levelPositions_id'];
+        $department_id      = $_POST['department_id'];
 
         if (isset($LevelPositions_id)) {
             $mensaje_de_vacio = ", estaba vacío.";
 
             $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'LevelPositions_id' => 'required',
+                'name'              => 'required',
+                'levelPositions_id' => 'required',
+                'department_id'     => 'required',
             ], $messages = [
-                'name.required' => 'El campo Nombre ' . $mensaje_de_vacio,
-                'LevelPositions_id.required' => 'Seleccione un nivel ',
+                'name.required'                 => 'El campo Nombre ' . $mensaje_de_vacio,
+                'levelPositions_id.required'    => 'Seleccione un nivel ',
+                'department_id.required'        => 'Seleccione un departamento ',
             ]);
 
             if ($validator->fails()) {
@@ -127,8 +136,9 @@ class MantenedorDeCargos extends Controller
 
 
             $cargo = new Position();
-            $cargo->name = $name;
-            $cargo->LevelPositions_id = $LevelPositions_id;
+            $cargo->name                = $name;
+            $cargo->LevelPositions_id   = $LevelPositions_id;
+            $cargo->department_id       = $department_id;
 
             $cargo->save();
 
@@ -144,7 +154,7 @@ class MantenedorDeCargos extends Controller
     {
         $cargo                      = Position::find($id);
         $usuarios                   = $cargo->users;//User::all();
-        $numUsuarios = count ( $usuarios );
+        $numUsuarios                = count ( $usuarios );
 
        // dd($usuarios);
         return view('mantenedores/verCargo',
@@ -158,6 +168,7 @@ class MantenedorDeCargos extends Controller
 
     public function eliminar($id, Request $request)
     {
+        //dd($_POST);
         $cargo      = Position::find($id);
         $mensaje    = 'El cargo: '.$cargo->name.', ha sido correctamente eliminado.';
 

@@ -58,11 +58,7 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany(Position::class, 'position_users', 'user_id', 'position_id' );
     }
 
-    // | Users | >-< | departments |
-    public function departments()
-    {
-        return $this->belongsToMany(Department::class, 'department_users', 'user_id', 'department_id' );
-    }
+
 
 
 

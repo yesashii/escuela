@@ -40,6 +40,7 @@
             <p class="row">
                 <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_city' ) }}</div>
                 <div class="col-xs-9">: {{ $usuario->cities()->first()->name }}</div>
+
             </p>
 
             <p class="row">
@@ -51,32 +52,22 @@
                 @endforeach
                 </ul>
             </div>
-
             </p>
 
             <p class="row">
             <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_positions' ) }}</div>
             <div class="col-xs-9">:<br/>
                 <ul>
+
                 @foreach( $usuario->positions as $position )
+
                    <li> {{ $position->name }} </li>
                 @endforeach
                 </ul>
             </div>
             </p>
 
-            </p>
 
-            <p class="row">
-            <div class="col-xs-3">{{ trans( 'mantusuarios.lvm_departments' ) }}</div>
-            <div class="col-xs-9">:<br/>
-                <ul>
-                @foreach( $usuario->departments as $department )
-                    <li>{{ $department->name }}</li>
-                @endforeach
-                </ul>
-            </div>
-            </p>
 
             <p class="row">
             <div class="col-xs-10"></div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mantenedores;
 
 
+use App\Models\Departments;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,6 @@ use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
 use App\Pivots\UserRole;
-use App\Pivots\DepartmentUser;
 use App\Pivots\PositionUser;
 
 
@@ -70,14 +70,11 @@ class MantenedorDeUsuarios extends Controller
 
         $positions = Position::All();
 
-        $departments = Department::All();
-
         return view('mantenedores/ingresarUsuario',
             [
                 'paises'            => $paises,
                 'roles'             => $roles,
                 'positions'         => $positions,
-                'departments'       => $departments,
                 'rol_check'        => $rol_check
             ]);
 
@@ -102,7 +99,6 @@ class MantenedorDeUsuarios extends Controller
             'city_id'       => 'required',
             'roles'         => 'required',
             'positions'     => 'required',
-            'departments'   => 'required',
         ],$messages = [
             'identifier.required'       => trans('mantusuarios.msj_email_requerido'),
             'first_name.required'       => trans('mantusuarios.msj_first_name_requerido'),
@@ -111,7 +107,6 @@ class MantenedorDeUsuarios extends Controller
             'city_id.required'          => trans('mantusuarios.msj_city_id_requerido'),
             'roles.required'            => trans('mantusuarios.msj_roles_requerido'),
             'positions.required'        => trans('mantusuarios.msj_positions_requerido'),
-            'departments.required'      => trans('mantusuarios.msj_departments_requerido'),
         ]);
 
 
@@ -130,7 +125,6 @@ class MantenedorDeUsuarios extends Controller
         $city_id        = $_POST['city_id'];
         $roles          = $_POST['roles'];
         $positions      = $_POST['positions'];
-        $departments    = $_POST['departments'];
 
         $password       = bcrypt('secret');
         $user_control   = $request->user()->identifier;
@@ -179,11 +173,10 @@ class MantenedorDeUsuarios extends Controller
 
         $user->roles()->attach($roles);
         $user->positions()->attach($positions);
-        $user->departments()->attach($departments);
 
 
 
-        $request->session()->flash('alert-success', trans('mantusuarios.msj_identifier_invalid'));
+        $request->session()->flash('alert-success', trans('mantusuarios.msj_usuario_ingresado_ok'));
         return Redirect::to('ingresarUsuario');
     }
     
@@ -191,24 +184,19 @@ class MantenedorDeUsuarios extends Controller
     
     public function actualizar($id)
     {
-        $paises = Country::All();
+        $paises             = Country::All();
+        $usuario            = User::find($id);
+        $id_pais            = $usuario->cities()->first()->countries()->first()->id;
+        $id_ciudad          = $usuario->cities()->first()->id;
+        $ciudades_del_pais  = City::where('country_id', '=', $id_pais)->get();
+        $roles              = Role::All();
 
-        $usuario = User::find($id);
-        
-        $id_pais = $usuario->cities()->first()->countries()->first()->id;
-        
-        $id_ciudad = $usuario->cities()->first()->id;
-        
-        $ciudades_del_pais = City::where('country_id', '=', $id_pais)->get();
-        
-        $roles = Role::All();
-        
-        //dd($roles_de_usuario);
         $rol_check = "";
 
-        $positions = Position::All();
+        $positions      = Position::All();
+        $departments    = Departments::All();
 
-        $departments = Department::All();
+
 
         return view('mantenedores/actualizarUsuario',
             [
@@ -241,7 +229,6 @@ class MantenedorDeUsuarios extends Controller
             'city_id'       => 'required',
             'roles'         => 'required',
             'positions'     => 'required',
-            'departments'   => 'required',
         ],$messages = [
             'identifier.required'       => trans(   'mantusuarios.msj_identifier_requerido' ),
             'first_name.required'       => trans(   'mantusuarios.msj_first_name_requerido' ),
@@ -250,7 +237,6 @@ class MantenedorDeUsuarios extends Controller
             'city_id.required'          => trans(   'mantusuarios.msj_city_id_requerido'    ),
             'roles.required'            => trans(   'mantusuarios.msj_roles_requerido'      ),
             'positions.required'        => trans(   'mantusuarios.msj_positions_requerido'  ),
-            'departments.required'      => trans(   'mantusuarios.msj_departments_requerido'),
         ]);
 
 
@@ -270,7 +256,6 @@ class MantenedorDeUsuarios extends Controller
         $user_control   = $request->user()->identifier;
         $roles          = $_POST['roles'];
         $positions      = $_POST['positions'];
-        $departments    = $_POST['departments'];
 
 
         $user = User::find($id);
@@ -312,10 +297,6 @@ class MantenedorDeUsuarios extends Controller
 
         PositionUser::where('user_id', $user->id)->delete();
         $user->positions()->attach($positions);
-
-        DepartmentUser::where('user_id', $user->id)->delete();
-        $user->departments()->attach($departments);
-
 
         $user->save();
         $request->session()->flash('alert-success', trans('mantusuarios.msj_usuario_actualizado_ok'));

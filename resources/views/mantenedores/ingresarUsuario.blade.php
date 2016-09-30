@@ -138,29 +138,6 @@
 
                     </div>
                 </div>
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                {{ trans('mantusuarios.tp_departamentos') }}
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                        <div class="panel-body">
-
-                            <div class="row">
-                                @foreach($departments as $department)
-                                    <div class="col-xs-2"></div>
-                                    <div class="checkbox col-xs-4 margenes-bottom">
-                                        <input type="checkbox" name="departments[]" value="{{ $department->id }}">{{ $department->name }}
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!--botones-->

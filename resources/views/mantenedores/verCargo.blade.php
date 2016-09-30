@@ -6,49 +6,93 @@
 
 @section('contenido')
 
-    <div class="container col-xs-12">
 
-        <div class="col-xs-3"></div>
-        <div class="panel panel-info col-xs-6 ">
-            <div class="panel-heading">
-                <h3 class="panel-title">Información del cargo</h3>
-            </div>
-            <div class="panel-body">
+    <div class="row">
 
-                <p class="row">
-                    <div class="col-xs-2">Nombre</div>
-                    <div class="col-xs-10">: {{ $cargo->name }}</div>
-                </p>
+        <div class="col-xs-2"></div>
+        <div class="panel-group col-xs-8" id="accordion">
 
-                <p class="row">
-                    <div class="col-xs-2">Nivel</div>
-                    <div class="col-xs-10">: {{ $cargo->levels->name }}</div>
-                </p>
+            <!--inicio -->
+            <div class="panel panel-info">
 
-                <p class="row">
-                <div class="col-xs-2">Usuarios</div>
-                <div class="col-xs-10">: Total: {{ $numUsuarios }}
-                <ul>
-                    @foreach( $usuarios as $usuario)
-                        <li>{{ $usuario->first_name." ".$usuario->last_name}}</li>
-                    @endforeach
-                </ul>
+                <!--Titulo-->
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#">
+                            {{ 'Detalle del nivel' }}
+                        </a>
+                    </h4>
                 </div>
-                </p>
+                <!--Fin Titulo-->
+
+                <div class="panel-body row">
+
+                    <!--Elemento_1-->
+                    <p class="row">
+                        <div class="col-xs-3">Nombre</div>
+                        <div class="col-xs-9">: {{ $cargo->name }}</div>
+                    </p>
+
+                    <!--Elemento_2-->
+                    <p class="row">
+                        <div class="col-xs-3">Nivel del cargo</div>
+                        <div class="col-xs-9">: {{ $cargo->levelPositions->level }}</div>
+                    </p>
+
+                    <!--Elemento_3-->
+                    <p class="row">
+                    <div class="col-xs-3">Departamento</div>
+                    <div class="col-xs-9">:
+                        @if( count($cargo->departments) > 0 )
+                            {{ $cargo->departments->name }}
+                        @else
+                            {{ 'No posee departamento asociado.' }}
+                        @endif
+
+                    </div>
+                    </p>
 
 
-                <p class="row">
-                <div class="col-xs-10"></div>
-                <div class="col-xs-2">
-                    <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarCargo") }}"' value="Volver">
+                    <!--Elemento_4-->
+                    <p class="row">
+                    <div class="col-xs-3">Usuarios asociados</div>
+
+                    @if( $numUsuarios > 0 )
+                    <div class="col-xs-9">: {{ $numUsuarios }}
+                        <ul>
+                            @foreach( $usuarios as $usuario)
+                                <li>{{ $usuario->first_name." ".$usuario->last_name}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @else
+                        <div class="col-xs-9">: {{ 'sin usuarios asociados' }} </div>
+                    @endif
+
+
+                    </p>
+
+
+                    <!--Botones-->
+                    <p class="row">
+                        <div class="col-xs-10"></div>
+                        <div class="col-xs-2">
+                            <input type="button" class="btn btn-primary " onclick='window.location ="{{ route("listarCargo") }}"' value="Volver">
+                        </div>
+                    </p>
+
+
                 </div>
-                </p>
 
             </div>
 
         </div>
+        <div class="col-xs-2"></div>
+
+
 
     </div>
+
 
 
 

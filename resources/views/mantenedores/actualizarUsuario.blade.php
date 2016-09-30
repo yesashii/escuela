@@ -32,11 +32,14 @@
                                        value="{{ $usuario->identifier }}">
                             </div>
 
+
+
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
                                 <label for="first_name">{{ trans('mantusuarios.l_first_name') }}</label>
                                 <input type="text" class="form-control" name="first_name" id="first_name"
                                        value="{{ $usuario->first_name }}">
                             </div>
+
 
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
                                 <label for="last_name">{{ trans('mantusuarios.l_last_name') }}</label>
@@ -142,30 +145,7 @@
 
                     </div>
                 </div>
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                {{ trans('mantusuarios.tp_departamentos') }}
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            @foreach($departments as $department)
-                                <label class="checkbox col-xs-6 margenes-bottom">
-                                    @if( isset( $usuario->departments->find($department->id)->id ) )
-                                        <input checked type="checkbox" name="departments[]"
-                                               value="{{ $department->id }}">{{ $department->name }}
-                                    @else
-                                        <input type="checkbox" name="departments[]"
-                                               value="{{ $department->id }}">{{ $department->name }}
-                                    @endif
-                                </label>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <!--botones-->

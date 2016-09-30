@@ -69,7 +69,11 @@
                                         </a>
                                     @else
                                         <a class="iconos"
-                                           href="javascript:confirmarEliminar('{{ url('eliminarCargo/'.$cargo->id) }}','{{ 'el cargo: '.$cargo->name }}')"
+                                           href="javascript:confirmarEliminar(
+                                            '{{ url('eliminarCargo/'.$cargo->id) }}',
+                                            '{{ $cargo->name }}',
+                                            '{{ 'mensaje ekiminar'}}'
+                                           )"
                                            data-toggle="tooltip" title="Eliminar">
                                             <img src="{{ url('img/ic_close_black_18dp_1x.png') }}"/>
                                         </a>

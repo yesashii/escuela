@@ -52,11 +52,21 @@
                             </div>
 
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
-                                <label for="level_id">Nivel</label>
-                                <select class="form-control" name="level_id" id="level_id"  >
+                                <label for="levelPositions_id">Nivel</label>
+                                <select class="form-control" name="levelPositions_id" id="levelPositions_id"  >
                                     <option value="" >Seleccione un nivel</option>
                                     @foreach( $niveles as $nivel )
                                         <option value="{{ $nivel->id }}">{{ $nivel->id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">
+                                <label for="department_id">Departamento</label>
+                                <select class="form-control" name="department_id" id="department_id"  >
+                                    <option value="" >Seleccione un departamento</option>
+                                    @foreach( $departamentos as $departamento )
+                                        <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
