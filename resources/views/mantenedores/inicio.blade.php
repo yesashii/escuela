@@ -1,4 +1,4 @@
-@extends('mantenedores.layouts.principal')
+@extends('layouts.principal')
 
 
 @section('titulo')

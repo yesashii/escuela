@@ -34,7 +34,11 @@ class MantenedorDeUsuarios extends Controller
         $numUsuarios = count ( $usuarios );
 
 
-        return view('mantenedores/listarUsuario', array('usuarios' => $usuarios, 'numUsuarios' => $numUsuarios));
+        return view('mantenedores/listarUsuario', array(
+            'usuarios' => $usuarios,
+            'numUsuarios' => $numUsuarios,
+            'buscar' => 'false',
+        ));
     }
 
 
@@ -50,10 +54,18 @@ class MantenedorDeUsuarios extends Controller
             ->Where('email', 'LIKE', '%'.$email.'%')
             ->Where('identifier', 'LIKE', '%'.$identificador.'%')
             ->Where('active', '=', 1)
-            ->paginate( $this->datosPorPagina );
+            ->get();
+        if( count( $usuarios ) == count( User::all() ) )
+        {
+            return Redirect::to('listarUsuario');
+        }
 
         $numUsuarios = count ( $usuarios );
-        return view('mantenedores/listarUsuario', array('usuarios' => $usuarios, 'numUsuarios' => $numUsuarios));
+        return view('mantenedores/listarUsuario', array(
+            'usuarios' => $usuarios,
+            'numUsuarios' => $numUsuarios,
+            'buscar' => 'true',
+        ));
     }
 
       /************************/  
@@ -217,9 +229,6 @@ class MantenedorDeUsuarios extends Controller
      */
     public function accionActializarUsuario($id, Request $request)
     {
-       // dd($_POST);
-
-        $mensaje_de_vacio = ", estaba vacío.";
 
         $validator = Validator::make($request->all(), [
             'identifier'    => 'required',
@@ -240,7 +249,6 @@ class MantenedorDeUsuarios extends Controller
         ]);
 
 
-
         if ($validator->fails()) {
 
             return redirect('actualizarUsuario/'.$id.'')
@@ -256,7 +264,6 @@ class MantenedorDeUsuarios extends Controller
         $user_control   = $request->user()->identifier;
         $roles          = $_POST['roles'];
         $positions      = $_POST['positions'];
-
 
         $user = User::find($id);
 
@@ -315,11 +322,15 @@ class MantenedorDeUsuarios extends Controller
 
     }
 
-    public function eliminarUsuario($id)
-    {
+    public function eliminarUsuario($id, Request $request)
+    {      
+        
         $usuario = User::find($id);
+        $mensaje    = trans( 'mantusuarios.msj_eliminado_1').$usuario->first_name.trans( 'mantusuarios.msj_eliminado_2');
+        
         $usuario->active = 0;
         $usuario->save();
+        $request->session()->flash('alert-success', $mensaje);
         return Redirect::to(route('listarUsuario'));
     }
 

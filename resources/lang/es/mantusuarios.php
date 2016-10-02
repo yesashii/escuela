@@ -53,12 +53,12 @@ return[
 	'l_city'						=> 'Ciudad',
 			
 	'ph_first_name'					=> 'Ingrese nombre',		
-	'ph_last_name'					=> 'Ingrese nombre',	
+	'ph_last_name'					=> 'Ingrese apellido',
 	'ph_email'						=> 'Ingrese su correo electrónico',	
 	'ph_identifier'					=> 'Ingrese un RUT ej: 12344567-9',	
 		
 	'btn_buscar'					=> 'Buscar',
-	'btn_nuevo'						=> 'Nuevo',
+	'btn_nuevo'						=> 'Nuevo usuario',
 	'btn_salir'						=> 'Salir',
 	'btn_volver'					=> 'Volver',
 	'btn_guardar'					=> 'Guardar',
@@ -86,6 +86,8 @@ return[
 	'msj_usuario_ingresado_ok'		=> 'El usuario ha sido correctamente ingresado.',
 	'msj_usuario_actualizado_ok'	=> 'El usuario ha sido correctamente actualizado.',	
 	'msj_reset_pass_ok'				=> 'La contraseña ha sido restablecida correctamente.',	
+	'msj_eliminado_1'				=> 'El usuario: ',	
+	'msj_eliminado_2'				=> ', ha sido eliminado correctamente.',	
 		
 	'jal_confirm_elmnar_user'		=> 'Se eliminará el usuario: ',
 		

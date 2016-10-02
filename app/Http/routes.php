@@ -159,6 +159,29 @@ Route::group(['middleware' => ['web']], function () {
         */
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | MANTENEDOR DE DEPARTAMENTOS
+        |--------------------------------------------------------------------------
+        *///INICIO
+
+        /* list */
+        Route::get('/listarDepartamentos','Mantenedores\MantenedorDeDepartamentos@index')->name('listarDepartamentos');
+        Route::post('/listarDepartamentos','Mantenedores\MantenedorDeDepartamentos@search');
+
+        /* create */
+        Route::get('/ingresarDepartamento',  'Mantenedores\MantenedorDeDepartamentos@create')
+            ->name('ingresarDepartamento');
+
+        Route::post('/ingresarDepartamento',  'Mantenedores\MantenedorDeDepartamentos@store');
+
+
+        /*//FIN
+        |--------------------------------------------------------------------------
+        |--------------------------------------------------------------------------
+        */
+
+
 
 
     });
