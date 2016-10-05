@@ -9,23 +9,29 @@ class Asset extends Model
     //
     protected $table = 'assets';
 
+
+
+    // | suppliers | -< | assets |
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class,'supplier_id', 'id');
+    }
+
+    // | state_assets | >- | assets |
+    public function state_assets()
+    {
+        return $this->belongsTo(StateAsset::class, 'state_asset_id', 'id');
+    }
+
     public function assignments()
     {
         return $this->hasMany(Assignment::class,'asset_id');
     }
 
 
-    // | state_assets | >- | assets |
-    public function state_assets()
-    {
-        return $this->belongsTo(Asset::class);
-    }
 
-    // | suppliers | -< | assets |
-    public function suppliers()
-    {
-        return $this->belongsTo(Supplier::class);
-    }
+
+
 
     // | purchases | -< | assets |
     public function assets()

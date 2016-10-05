@@ -47,9 +47,9 @@ Route::group(['middleware' => ['web']], function () {
         });
 
 
-        /*******************************/
-        /** MANTENEDOR DE USUARIOS   **/
-        /*****************************/
+        /*|--------------------------------------------------------------------------
+        | MANTENEDOR DE USUARIOS
+        |------------------------------------------------------------------------*/
 
         /* create */
         Route::get('/ingresarUsuario',
@@ -98,6 +98,20 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('/cargaCiudadUsuario',
             'Mantenedores\MantenedorDeUsuarios@cargaCiudadUsuario');
+
+        /*|--------------------------------------------------------------------------
+        | MANTENEDOR DE ACTIVOS
+        |------------------------------------------------------------------------*/
+
+        /* list */
+        Route::get('/listarActivo',
+            'Mantenedores\MantenedorDeActivos@index')
+            ->name('listarActivo');
+        Route::post('/listarActivo',
+            'Mantenedores\MantenedorDeActivos@search')
+            ->name('listarActivo');
+
+
 
         /**********************************/
         /** MANTENEDOR DE CARGOS        **/

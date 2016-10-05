@@ -110,4 +110,4 @@
         {!! $usuarios->render() !!}
     @endif
 @endsection
->>>>>>> ba04d2001639e23cd695180fd742198a1204d1df
+
