@@ -18,15 +18,13 @@
                 <div class="row">
                     <div class="col-xs-9"></div>
 
-                    <div class="btn-group col-xs-2">
+                    <div class="btn-group col-xs-3">
                         <button type="button"
                                 class="btn btn-success"
                                 onclick='window.location ="@yield('url_btn_nuevo')"' >
                             @yield('value_btn_nuevo')
                         </button>
-                    </div>
 
-                    <div class="btn-group col-xs-1 ">
                         <button type="button"
                                 class="btn btn-primary "
                                 onclick='window.location ="@yield('url_btn_salir')"'>
