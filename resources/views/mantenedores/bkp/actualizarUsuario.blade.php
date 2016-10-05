@@ -1,4 +1,4 @@
-@extends('mantenedores.layouts.principal')
+@extends('layouts.principal')
 
 @section('titulo') {{ trans('mantusuarios.tit_actualizarUsuario') }} @endsection
 
@@ -18,12 +18,12 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#datosPersonales">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
                                 {{ trans('mantusuarios.tp_datos_personales') }}
                             </a>
                         </h4>
                     </div>
-                    <div id="datosPersonales" class="panel-collapse collapse in">
+                    <div id="collapse" class="panel-collapse collapse in">
                         <div class="panel-body">
 
                             <div class="form-group col-sm-12 col-xs-12 pegado-izquierda">

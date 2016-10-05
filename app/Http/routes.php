@@ -57,8 +57,7 @@ Route::group(['middleware' => ['web']], function () {
             ->name('ingresarUsuario');
 
         Route::post('/ingresarUsuario',
-            'Mantenedores\MantenedorDeUsuarios@accionIngresarUsuario')
-            ->name('ingresarUsuario');;
+            'Mantenedores\MantenedorDeUsuarios@accionIngresarUsuario');
 
 
         /* update */
