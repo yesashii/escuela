@@ -11,6 +11,9 @@ use App\Models\Asset;
 use App\Models\Supplier;
 use App\Models\StateAsset;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class MantenedorDeActivos extends Controller
@@ -48,18 +51,49 @@ class MantenedorDeActivos extends Controller
         $supplier_id    = $_POST['supplier_id'];
         $state_asset_id = $_POST['state_asset_id'];
 
+        $operador_code             = '=';
+        $operador_supplier_id      = '=';
+        $operador_state_asset_id   = '=';
 
-        $activos = Asset::all();
+        if( $code == '' && $supplier_id == '' && $state_asset_id == '')
+        {
+            return Redirect::to('listarActivo');
+        }
 
+        
+        if($code == '')
+        {
+            $operador_code  = 'like';
+            $code           = '%'.$code.'%' ;
+        }
+        if($supplier_id == '')
+        {
+            $operador_supplier_id  = 'like';
+            $supplier_id           = '%'.$supplier_id.'%' ;
+        }
+        if($state_asset_id == '')
+        {
+            $operador_state_asset_id    = 'like';
+            $state_asset_id             = '%'.$state_asset_id.'%' ;
+        }
 
-
-        $activos = Asset::where( 'code',     '=',    $code           )
-            ->Where ( 'name',                'LIKE', '%'.$name.'%'   )
-            ->Where ( 'supplier_id',         '=',    $supplier_id    )
-            ->Where ( 'state_asset_id',      '=',    $state_asset_id )
+        $activos = Asset::where( 'code',     $operador_code ,          $code            )
+            ->Where ( 'name',                'LIKE', "%".$name."%"                      )
+            ->Where ( 'supplier_id',         $operador_supplier_id,    $supplier_id     )
+            ->Where ( 'state_asset_id',      $operador_state_asset_id, $state_asset_id  )
             ->get();
+        //dd($activos);
 
-        dd($activos);
+        $proveedores    = Supplier::all();
+        $estados        = StateAsset::all();
+
+        return view('mantenedores.assets.listar', [
+
+            'activos'       => $activos,
+            'proveedores'   => $proveedores,
+            'estados'       => $estados,
+            'buscar'        => 'true',
+        ]);
     }
 
     /**

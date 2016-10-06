@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Mantenedores;
 
 
-use App\Models\Departments;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use App\Models\Departments;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\models\City;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\Role;
 use App\Models\Position;
-use App\Models\Department;
 use App\Pivots\UserRole;
 use App\Pivots\PositionUser;
 
