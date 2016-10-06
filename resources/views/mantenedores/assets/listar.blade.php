@@ -50,7 +50,7 @@
 
                 <td>
                     <select class="form-control" name="supplier_id" id="supplier_id">
-                        <option  value="0">{{ trans('mantActivos.isd_supplier_id') }}</option>
+                        <option  value="">{{ trans('mantActivos.isd_supplier_id') }}</option>
                         @foreach( $proveedores as $proveedor )
                             <option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
                         @endforeach
@@ -59,7 +59,7 @@
 
                 <td>
                     <select class="form-control" name="state_asset_id" id="state_asset_id">
-                        <option  value="0">{{ trans('mantActivos.isd_state_asset_id') }}</option>
+                        <option  value="">{{ trans('mantActivos.isd_state_asset_id') }}</option>
                         @foreach( $estados as $estado )
                             <option value="{{ $estado->id }}">{{ $estado->name }}</option>
                         @endforeach

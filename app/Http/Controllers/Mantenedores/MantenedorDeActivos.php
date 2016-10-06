@@ -42,8 +42,24 @@ class MantenedorDeActivos extends Controller
     public function search()
     {
         //
-        dd($_POST);
+        //dd($_POST);
+        $code           = $_POST['code'];
+        $name           = $_POST['name'];
+        $supplier_id    = $_POST['supplier_id'];
+        $state_asset_id = $_POST['state_asset_id'];
 
+
+        $activos = Asset::all();
+
+
+
+        $activos = Asset::where( 'code',     '=',    $code           )
+            ->Where ( 'name',                'LIKE', '%'.$name.'%'   )
+            ->Where ( 'supplier_id',         '=',    $supplier_id    )
+            ->Where ( 'state_asset_id',      '=',    $state_asset_id )
+            ->get();
+
+        dd($activos);
     }
 
     /**
