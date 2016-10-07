@@ -52,10 +52,18 @@
 
     <p class="row">
     <div class="col-xs-3">{{ trans( 'mantActivos.lvm_assignements' ) }}</div>
-    <div class="col-xs-3">:<br/>
+    <div class="col-xs-9">:<br/>
         <ul>
             @foreach( $activo->assignments as $assignment )
-                <li> {{ $assignment->users->first_name.' ['. }} </li>
+
+                <li> {{ $assignment->users->first_name }}
+                    <ul>
+                        <li>{{ 'Estado      : '.$assignment->state_assignments->find($assignment->state_assignment_id)->name    }}</li>
+                        <li>{{ 'Asignado    : '.$assignment->assigned_at                                                        }}</li>
+                        <li>{{ 'entregado   : '.$assignment->returned_at                                                        }}</li>
+                    </ul>
+                </li>
+
             @endforeach
         </ul>
     </div>

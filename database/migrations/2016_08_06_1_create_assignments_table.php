@@ -17,12 +17,17 @@ class CreateAssignmentsTable extends Migration
 
             $table->increments('id');
             $table->string('description');
+            $table->dateTime('assigned_at');
+            $table->dateTime('returned_at');
 
             $table->integer('user_id')->unsigned();
             $table->integer('asset_id')->unsigned();
+            $table->integer('state_assignment_id')->unsigned();
 
             $table->string('user_control');
             $table->timestamps();
+
+
 
             $table->foreign('user_id')
                 ->references('id')
@@ -32,6 +37,11 @@ class CreateAssignmentsTable extends Migration
             $table->foreign('asset_id')
                 ->references('id')
                 ->on('assets')
+                ->onDelete('cascade');
+
+            $table->foreign('state_assignment_id')
+                ->references('id')
+                ->on('state_assignments')
                 ->onDelete('cascade');
 
         });

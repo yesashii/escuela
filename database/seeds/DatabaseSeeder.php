@@ -64,7 +64,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(StateAssignmentTableSeeder::class);
         $this->call(AssignmentTableSeeder::class);
-        $this->call(StateAssignment_AssignmentTableSeeder::class);
 
         $this->call(OfficesTableSeeder::class);
 

@@ -15,24 +15,17 @@ class Assignment extends Model
         return $this->belongsTo(Asset::class,'asset_id', 'id');
     }
 
-    // |assignments| >- |assets|
+    // |assignments| >- |users|
     public function users()
     {
         return $this->belongsTo(User::class,'user_id', 'id');
     }
 
-    // |state_assignments| >-< |assignments|
+    // |assignments| >- |state_assignments|
     public function state_assignments()
     {
-        return $this->belongsToMany(
-            StateAssignment::class,
-            'state_assignment_assignments',
-            'assignment_id',
-            'state_assignment_id'
-        );
+        return $this->belongsTo(StateAssignment::class,'state_assignment_id', 'id');
     }
-
-
 
 
 }
