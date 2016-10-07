@@ -80,13 +80,13 @@
                 <td>{{ $activo->suppliers->name }}</td>
                 <td>{{ $activo->state_assets->name }}</td>
 
-                <td><a class="iconos" href="{{ '#' }}"
+                <td><a class="iconos" href="{{ url('actualizarActivo/'.$activo->id) }}"
                        data-toggle="tooltip"
                        title="{{ trans('mantActivos.tt_Editar')}}" >
                         <img src="{{ url('img/ic_edit_black_18dp_1x.png') }}"/>
                     </a> |
 
-                    <a class="iconos" href="{{ '#'  }}"
+                    <a class="iconos" href="{{ url('verActivo/'.$activo->id)  }}"
                        data-toggle="tooltip"
                        title="{{ trans('mantActivos.tt_ver_mas')}}" >
                         <img src="{{ url('img/ic_visibility_black_18dp_1x.png') }}"/>

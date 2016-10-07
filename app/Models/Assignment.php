@@ -12,9 +12,14 @@ class Assignment extends Model
     // |assignments| >- |assets|
     public function assets()
     {
-        return $this->belongsTo(Asset::class);
+        return $this->belongsTo(Asset::class,'asset_id', 'id');
     }
 
+    // |assignments| >- |assets|
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id', 'id');
+    }
 
     // |state_assignments| >-< |assignments|
     public function state_assignments()

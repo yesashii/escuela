@@ -23,9 +23,17 @@ class Asset extends Model
         return $this->belongsTo(StateAsset::class, 'state_asset_id', 'id');
     }
 
+    // | purchases | >- | assets |
+    public function purchases()
+    {
+        return $this->belongsTo(Purchase::class, 'purchase_id', 'id');
+    }
+
+
+    // | assignments | >- | assets |
     public function assignments()
     {
-        return $this->hasMany(Assignment::class,'asset_id');
+        return $this->hasMany(Assignment::class,'asset_id', 'id');
     }
 
 
